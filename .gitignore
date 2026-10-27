@@ -1,0 +1,33 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Claude Code (configuración local de cada máquina)
+.claude/settings.local.json
+
+# Secretos y credenciales
+.env
+.env.*
+.clasprc.json
+.clasp.json
+
+# Datos privados: GitHub Pages es público, la lista de invitados vive solo en Google Sheets
+invitados*.csv
+invitados*.xlsx
+*.xlsx
+
+# Material de trabajo que no se publica (fotos y audio originales sin optimizar)
+_originales/
+_borradores/
+
+# Logs y temporales
+*.log
+*.tmp
