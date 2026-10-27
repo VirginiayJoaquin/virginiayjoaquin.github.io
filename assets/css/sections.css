@@ -304,7 +304,82 @@
   color: var(--color-texto-suave);
 }
 
-/* 7. Galería */
+/* 7. Bebidas: tarjetas seleccionables (checkbox oculto visualmente, la tarjeta es el control) */
+.bebidas__opciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: var(--esp-3);
+}
+
+.bebida {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-4) var(--esp-2);
+  border: 1px solid var(--color-salvia);
+  border-radius: var(--radio-lg);
+  background: var(--color-crema);
+  color: var(--color-oliva);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--transicion), background-color var(--transicion), color var(--transicion);
+}
+
+.bebida__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bebida__nombre {
+  color: var(--color-texto);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+}
+
+/* Tilde en la esquina cuando está elegida */
+.bebida::after {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--color-oliva)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fffdf8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E")
+    center / 0.8rem no-repeat;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--transicion), transform var(--transicion);
+}
+
+.bebida:hover {
+  border-color: var(--color-oliva-claro);
+}
+
+.bebida:has(.bebida__input:checked) {
+  border-color: var(--color-oliva);
+  background: var(--color-oliva-tenue);
+  color: var(--color-oliva-oscuro);
+}
+
+.bebida:has(.bebida__input:checked)::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bebida:has(.bebida__input:focus-visible) {
+  outline: 2px solid var(--color-oliva);
+  outline-offset: 3px;
+}
+
+.bebida:has(.bebida__input[aria-invalid='true']) {
+  border-color: var(--color-error);
+}
+
+/* 8. Galería */
 .galeria__grilla {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -342,13 +417,13 @@
   transform: scale(1.04);
 }
 
-/* 8. Canciones: la tarjeta del formulario mantiene fondo claro sobre la sección oliva */
+/* 9. Canciones: la tarjeta del formulario mantiene fondo claro sobre la sección oliva */
 .canciones .formulario {
   max-width: 30rem;
   margin-inline: auto;
 }
 
-/* 9. Dress code */
+/* 10. Dress code */
 .dresscode__tipo {
   margin-top: var(--esp-5);
   color: var(--color-oliva-oscuro);
@@ -387,7 +462,7 @@
   font-style: italic;
 }
 
-/* 10. Tips */
+/* 11. Tips */
 .tips {
   display: grid;
   gap: var(--esp-4);
@@ -420,7 +495,7 @@
   font-size: var(--texto-sm);
 }
 
-/* 11. Regalos */
+/* 12. Regalos */
 .regalos__toggle {
   margin-top: var(--esp-6);
 }

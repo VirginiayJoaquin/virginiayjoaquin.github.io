@@ -66,6 +66,16 @@ export const config = {
     lugaresSinCodigo: 2,
   },
 
+  // `id` es lo que se guarda en la planilla; `icono` es opcional (si falta, se usa el id;
+  // si no hay ícono con ese nombre en bebidas.js, se muestra una copa genérica).
+  bebidas: [
+    { id: 'cerveza', nombre: 'Cerveza' },
+    { id: 'fernet', nombre: 'Fernet' },
+    { id: 'whisky', nombre: 'Whisky' },
+    { id: 'aperol', nombre: 'Aperol' },
+    { id: 'gin', nombre: 'Gin' },
+  ],
+
   galeria: [
     { src: './assets/img/galeria/foto-1.svg', alt: 'Foto de ejemplo 1' },
     { src: './assets/img/galeria/foto-2.svg', alt: 'Foto de ejemplo 2' },

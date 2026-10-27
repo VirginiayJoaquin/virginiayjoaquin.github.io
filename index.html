@@ -142,15 +142,38 @@
         </div>
       </section>
 
-      <!-- 7. Galería -->
-      <section class="seccion galeria" id="galeria" aria-labelledby="galeria-titulo">
+      <!-- 7. Elegí tus bebidas -->
+      <section class="seccion bebidas" id="bebidas" aria-labelledby="bebidas-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="bebidas-titulo">Elegí tus bebidas</h2>
+          <p class="seccion__intro">Contanos qué te gusta tomar así no falta nada. Podés elegir varias.</p>
+
+          <form class="formulario tarjeta" data-bebidas novalidate>
+            <fieldset class="campo" aria-describedby="bebidas-opciones-error">
+              <legend class="campo__label">¿Qué te gustaría tomar?</legend>
+              <div class="bebidas__opciones" data-bebidas-opciones></div>
+              <p class="campo__error" id="bebidas-opciones-error" data-error-de="bebidas" hidden></p>
+            </fieldset>
+            <div class="campo">
+              <label class="campo__label" for="bebidas-nombre">Tu nombre</label>
+              <input class="campo__input" id="bebidas-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="bebidas-nombre-error">
+              <p class="campo__error" id="bebidas-nombre-error" data-error-de="nombre" hidden></p>
+            </div>
+            <button class="boton boton--bloque" type="submit">Enviar</button>
+            <p class="formulario__estado" data-estado role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- 8. Galería -->
+      <section class="seccion seccion--alt galeria" id="galeria" aria-labelledby="galeria-titulo">
         <div class="contenedor contenedor--ancho revelar">
           <h2 class="titulo-seccion" id="galeria-titulo">Nuestra historia</h2>
           <ul class="galeria__grilla" data-galeria></ul>
         </div>
       </section>
 
-      <!-- 8. Sugerir canción -->
+      <!-- 9. Sugerir canción -->
       <section class="seccion seccion--oliva canciones" id="canciones" aria-labelledby="canciones-titulo">
         <div class="contenedor revelar">
           <h2 class="titulo-seccion" id="canciones-titulo">¿Qué no puede faltar en la pista?</h2>
@@ -176,7 +199,7 @@
         </div>
       </section>
 
-      <!-- 9. Dress code -->
+      <!-- 10. Dress code -->
       <section class="seccion dresscode" id="dresscode" aria-labelledby="dresscode-titulo">
         <div class="contenedor revelar">
           <h2 class="titulo-seccion" id="dresscode-titulo">Dress code</h2>
@@ -184,7 +207,7 @@
         </div>
       </section>
 
-      <!-- 10. Tips -->
+      <!-- 11. Tips -->
       <section class="seccion seccion--alt" id="tips" aria-labelledby="tips-titulo">
         <div class="contenedor contenedor--ancho">
           <h2 class="titulo-seccion revelar" id="tips-titulo">Datos útiles</h2>
@@ -192,7 +215,7 @@
         </div>
       </section>
 
-      <!-- 11. Regalos -->
+      <!-- 12. Regalos -->
       <section class="seccion regalos" id="regalos" aria-labelledby="regalos-titulo">
         <div class="contenedor revelar">
           <h2 class="titulo-seccion" id="regalos-titulo">Regalos</h2>

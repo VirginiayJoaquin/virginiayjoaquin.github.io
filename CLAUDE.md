@@ -12,7 +12,7 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
 - **Stack:** HTML, CSS y JavaScript vanilla. **Sin frameworks, sin librerías de UI, sin build step, sin npm.**
   Lo que se edita es lo que se publica.
 - **Backend:** Google Sheets + Google Apps Script (publicado como Web App) para RSVP,
-  sugerencia de canciones y datos de invitados.
+  elección de bebidas, sugerencia de canciones y datos de invitados.
 - **Deploy:** GitHub Pages (sitio estático).
 - **PWA:** instalable en el celular (manifest + service worker).
 - **Mobile first:** se diseña para celular (~360–430 px) y se escala hacia arriba.
@@ -30,12 +30,14 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
 5. **Ceremonia y fiesta:** lugar, hora, dirección, botón **Agendar** (Google Calendar + archivo `.ics`)
    y botón **Cómo llegar** (link a Google Maps / Waze).
 6. **Confirmar asistencia (RSVP):** formulario que envía a Google Sheets vía Apps Script.
-7. **Galería** de fotos.
-8. **Sugerir canción:** formulario que envía a Google Sheets vía Apps Script.
-9. **Dress code.**
-10. **Tips** (alojamiento, estacionamiento, horarios, etc.).
-11. **Regalos** (datos bancarios / lista; botón para copiar al portapapeles).
-12. **Redes** (hashtag, Instagram, etc.).
+7. **Elegí tus bebidas:** multiselección de bebidas (opciones en `config.js`) que envía a Google Sheets vía Apps Script.
+8. **Galería** de fotos.
+9. **Sugerir canción:** formulario que envía a Google Sheets vía Apps Script.
+10. **Dress code** (oculto por ahora: `dressCode.mostrar = false` en `config.js`).
+11. **Tips** (alojamiento, estacionamiento, horarios, etc.).
+12. **Regalos** (datos bancarios / lista; botón para copiar al portapapeles).
+
+No hay sección de redes ni hashtag (se decidió quitarla).
 
 ## Decisiones técnicas
 
@@ -97,6 +99,7 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
 │   │   ├── guest.js         # Lectura de ?i=codigo y personalización
 │   │   ├── calendar.js      # Links de Google Calendar / descarga .ics
 │   │   ├── rsvp.js          # Formulario de confirmación
+│   │   ├── bebidas.js       # Formulario de elección de bebidas
 │   │   ├── songs.js         # Formulario de sugerencia de canción
 │   │   ├── gallery.js       # Galería / visor de fotos
 │   │   ├── gifts.js         # Copiar datos de regalos al portapapeles
@@ -118,7 +121,7 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
 │       └── fiesta.ics
 │
 └── apps-script/             # Backend: se copia manualmente al editor de Apps Script
-    ├── Code.gs              # doGet (invitado por código) y doPost (RSVP, canciones)
+    ├── Code.gs              # doGet (invitado por código) y doPost (RSVP, bebidas, canciones)
     └── README.md            # Estructura de la planilla y pasos de publicación
 ```
 
@@ -126,6 +129,9 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
 
 - `Invitados`: código, nombre a mostrar, lugares asignados, notas.
 - `RSVP`: fecha, código, nombre, asiste (sí/no), cantidad, restricciones alimentarias, mensaje.
+- `Bebidas`: fecha, código, nombre, bebidas (ids separados por coma, p. ej. `cerveza, gin`).
+  Payload: `{ tipo: 'bebidas', codigo, nombre, bebidas: ['cerveza', 'gin'] }`.
+  Validar en Apps Script que cada bebida sea una opción conocida. Con reenvíos, la última respuesta por código prevalece.
 - `Canciones`: fecha, código, nombre, canción, artista.
 
 ## Deploy
