@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es-UY">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Nos casamos</title>
+    <meta name="description" content="Invitación a nuestro casamiento.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#444a26">
+
+    <link rel="preload" href="./assets/fonts/cormorant-garamond-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/jost.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./assets/css/tokens.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/components.css">
+    <link rel="stylesheet" href="./assets/css/sections.css">
+
+    <script type="module" src="./assets/js/main.js"></script>
+    <noscript><style>.intro { display: none; }</style></noscript>
+  </head>
+
+  <body>
+    <!-- Pantalla de entrada: la música solo puede arrancar tras un gesto del usuario -->
+    <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-titulo">
+      <div class="intro__marco">
+        <p class="intro__antetitulo">Nuestro casamiento</p>
+        <p class="intro__monograma" aria-hidden="true" data-texto="iniciales"></p>
+        <p class="intro__titulo" id="intro-titulo" data-texto="nombres"></p>
+        <p class="intro__fecha" data-texto="fechaCorta"></p>
+        <button class="boton boton--claro" type="button" data-intro-musica>Ingresar con música</button>
+        <button class="intro__sin-musica" type="button" data-intro-silencio>Ingresar sin música</button>
+      </div>
+    </div>
+
+    <audio id="musica" preload="none" loop></audio>
+    <button class="musica" id="musica-toggle" type="button" aria-label="Reproducir música" hidden>
+      <svg class="musica__icono musica__icono--play" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <svg class="musica__icono musica__icono--pausa" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+    </button>
+
+    <main id="contenido">
+      <!-- 1. Portada -->
+      <section class="portada" id="inicio" tabindex="-1" aria-labelledby="portada-titulo">
+        <div class="portada__marco">
+          <p class="portada__antetitulo" data-texto="portadaAntetitulo"></p>
+          <h1 class="portada__nombres" id="portada-titulo">
+            <span data-texto="novio1"></span>
+            <span class="portada__y">&amp;</span>
+            <span data-texto="novio2"></span>
+          </h1>
+          <img class="portada__rama" src="./assets/img/decor/rama-olivo.svg" alt="" width="240" height="60">
+          <p class="portada__fecha"><time data-texto="fechaCorta"></time></p>
+          <p class="portada__frase" data-texto="portadaFrase"></p>
+        </div>
+        <a class="portada__bajar" href="#cuenta" aria-label="Bajar a la cuenta regresiva">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+      </section>
+
+      <!-- 3. Cuenta regresiva -->
+      <section class="seccion seccion--oliva cuenta-regresiva" id="cuenta" aria-labelledby="cuenta-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="cuenta-titulo">Falta poco</h2>
+          <p class="cuenta-regresiva__fecha"><time data-texto="fechaLarga"></time></p>
+          <div class="reloj" data-countdown>
+            <p class="reloj__unidad"><span class="reloj__numero" data-unidad="dias">–</span><span class="reloj__etiqueta">días</span></p>
+            <p class="reloj__unidad"><span class="reloj__numero" data-unidad="horas">–</span><span class="reloj__etiqueta">horas</span></p>
+            <p class="reloj__unidad"><span class="reloj__numero" data-unidad="minutos">–</span><span class="reloj__etiqueta">minutos</span></p>
+            <p class="reloj__unidad"><span class="reloj__numero" data-unidad="segundos">–</span><span class="reloj__etiqueta">segundos</span></p>
+          </div>
+          <p class="cuenta-regresiva__final" data-countdown-final hidden></p>
+        </div>
+      </section>
+
+      <!-- 4. Invitado personalizado (?i=codigo) -->
+      <section class="seccion seccion--compacta invitado" id="invitado" aria-labelledby="invitado-titulo">
+        <div class="contenedor revelar">
+          <h2 class="invitado__saludo" id="invitado-titulo" data-invitado-saludo data-texto="saludoGenerico"></h2>
+          <p class="invitado__texto" data-invitado-texto data-texto="textoGenerico"></p>
+          <p class="invitado__lugares" data-invitado-lugares hidden></p>
+        </div>
+      </section>
+
+      <!-- 5. Ceremonia y fiesta -->
+      <section class="seccion eventos-seccion" id="eventos" aria-labelledby="eventos-titulo">
+        <div class="contenedor contenedor--ancho">
+          <h2 class="titulo-seccion revelar" id="eventos-titulo">Ceremonia y fiesta</h2>
+          <div class="eventos" data-eventos></div>
+        </div>
+      </section>
+
+      <!-- 6. Confirmar asistencia -->
+      <section class="seccion seccion--alt rsvp" id="confirmar" aria-labelledby="rsvp-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="rsvp-titulo">Confirmá tu asistencia</h2>
+          <p class="seccion__intro">Te pedimos que nos confirmes antes del <strong data-texto="rsvpLimite"></strong>.</p>
+
+          <form class="formulario tarjeta" data-rsvp novalidate>
+            <div class="campo">
+              <label class="campo__label" for="rsvp-nombre">Nombre y apellido</label>
+              <input class="campo__input" id="rsvp-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="rsvp-nombre-error">
+              <p class="campo__error" id="rsvp-nombre-error" data-error-de="nombre" hidden></p>
+            </div>
+
+            <fieldset class="campo" aria-describedby="rsvp-asiste-error">
+              <legend class="campo__label">¿Vas a venir?</legend>
+              <div class="opciones">
+                <label class="opcion"><input type="radio" name="asiste" value="si" required><span>¡Sí, voy!</span></label>
+                <label class="opcion"><input type="radio" name="asiste" value="no"><span>No voy a poder</span></label>
+              </div>
+              <p class="campo__error" id="rsvp-asiste-error" data-error-de="asiste" hidden></p>
+            </fieldset>
+
+            <div class="formulario__grupo" data-rsvp-si hidden>
+              <div class="campo">
+                <label class="campo__label" for="rsvp-cantidad">¿Cuántos van a venir?</label>
+                <select class="campo__input" id="rsvp-cantidad" name="cantidad" aria-describedby="rsvp-cantidad-ayuda rsvp-cantidad-error"></select>
+                <p class="campo__ayuda" id="rsvp-cantidad-ayuda">Contándote a vos.</p>
+                <p class="campo__error" id="rsvp-cantidad-error" data-error-de="cantidad" hidden></p>
+              </div>
+              <div class="campo">
+                <label class="campo__label" for="rsvp-restricciones">Restricciones alimentarias <span class="campo__opcional">(opcional)</span></label>
+                <input class="campo__input" id="rsvp-restricciones" name="restricciones" type="text" maxlength="200" placeholder="Vegetariano, celíaco, alergias…">
+              </div>
+            </div>
+
+            <div class="campo">
+              <label class="campo__label" for="rsvp-mensaje">Mensaje para nosotros <span class="campo__opcional">(opcional)</span></label>
+              <textarea class="campo__input" id="rsvp-mensaje" name="mensaje" maxlength="500" rows="3" aria-describedby="rsvp-mensaje-error"></textarea>
+              <p class="campo__error" id="rsvp-mensaje-error" data-error-de="mensaje" hidden></p>
+            </div>
+
+            <button class="boton boton--bloque" type="submit">Enviar confirmación</button>
+            <p class="formulario__estado" data-estado role="status"></p>
+          </form>
+
+          <div class="rsvp__gracias tarjeta" data-rsvp-gracias tabindex="-1" hidden>
+            <p class="rsvp__gracias-titulo" data-rsvp-gracias-titulo></p>
+            <p class="rsvp__gracias-texto" data-rsvp-gracias-texto></p>
+            <button class="boton boton--secundario" type="button" data-rsvp-editar>Modificar respuesta</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Galería -->
+      <section class="seccion galeria" id="galeria" aria-labelledby="galeria-titulo">
+        <div class="contenedor contenedor--ancho revelar">
+          <h2 class="titulo-seccion" id="galeria-titulo">Nuestra historia</h2>
+          <ul class="galeria__grilla" data-galeria></ul>
+        </div>
+      </section>
+
+      <!-- 8. Sugerir canción -->
+      <section class="seccion seccion--oliva canciones" id="canciones" aria-labelledby="canciones-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="canciones-titulo">¿Qué no puede faltar en la pista?</h2>
+          <p class="seccion__intro">Sugerinos una canción y la sumamos a la lista.</p>
+
+          <form class="formulario tarjeta" data-canciones novalidate>
+            <div class="campo">
+              <label class="campo__label" for="cancion-titulo">Canción</label>
+              <input class="campo__input" id="cancion-titulo" name="cancion" type="text" maxlength="120" required aria-describedby="cancion-titulo-error">
+              <p class="campo__error" id="cancion-titulo-error" data-error-de="cancion" hidden></p>
+            </div>
+            <div class="campo">
+              <label class="campo__label" for="cancion-artista">Artista <span class="campo__opcional">(opcional)</span></label>
+              <input class="campo__input" id="cancion-artista" name="artista" type="text" maxlength="120">
+            </div>
+            <div class="campo">
+              <label class="campo__label" for="cancion-nombre">Tu nombre <span class="campo__opcional">(opcional)</span></label>
+              <input class="campo__input" id="cancion-nombre" name="nombre" type="text" autocomplete="name" maxlength="80">
+            </div>
+            <button class="boton boton--bloque" type="submit">Sugerir canción</button>
+            <p class="formulario__estado" data-estado role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- 9. Dress code -->
+      <section class="seccion dresscode" id="dresscode" aria-labelledby="dresscode-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="dresscode-titulo">Dress code</h2>
+          <div data-dresscode></div>
+        </div>
+      </section>
+
+      <!-- 10. Tips -->
+      <section class="seccion seccion--alt" id="tips" aria-labelledby="tips-titulo">
+        <div class="contenedor contenedor--ancho">
+          <h2 class="titulo-seccion revelar" id="tips-titulo">Datos útiles</h2>
+          <ul class="tips" data-tips></ul>
+        </div>
+      </section>
+
+      <!-- 11. Regalos -->
+      <section class="seccion regalos" id="regalos" aria-labelledby="regalos-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="regalos-titulo">Regalos</h2>
+          <p class="seccion__intro" data-regalos-texto></p>
+          <button class="boton boton--secundario regalos__toggle" type="button" aria-expanded="false" aria-controls="regalos-datos" data-regalos-toggle>Ver datos bancarios</button>
+          <div class="regalos__datos" id="regalos-datos" data-regalos-cuentas hidden></div>
+        </div>
+      </section>
+
+      <!-- 12. Redes -->
+      <section class="seccion seccion--oliva redes" id="redes" aria-labelledby="redes-titulo">
+        <div class="contenedor revelar">
+          <h2 class="titulo-seccion" id="redes-titulo">Compartí el momento</h2>
+          <div class="redes__contenido" data-redes></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <p class="pie__texto" data-texto="pie"></p>
+      <p class="pie__nombres" data-texto="nombres"></p>
+      <p class="pie__fecha" data-texto="fechaCorta"></p>
+    </footer>
+
+    <dialog class="visor" data-visor aria-label="Visor de fotos">
+      <figure class="visor__figura">
+        <img class="visor__img" data-visor-img alt="">
+        <figcaption class="visor__pie" data-visor-pie></figcaption>
+      </figure>
+      <button class="visor__boton visor__cerrar" type="button" data-visor-cerrar aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <button class="visor__boton visor__anterior" type="button" data-visor-anterior aria-label="Foto anterior">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+      </button>
+      <button class="visor__boton visor__siguiente" type="button" data-visor-siguiente aria-label="Foto siguiente">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+    </dialog>
+
+    <div class="aviso" data-aviso role="status" aria-live="polite"></div>
+  </body>
+</html>
