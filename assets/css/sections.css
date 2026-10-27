@@ -467,28 +467,6 @@
   gap: var(--esp-2);
 }
 
-/* 12. Redes */
-.redes__contenido {
-  display: grid;
-  justify-items: center;
-  gap: var(--esp-5);
-}
-
-.redes__hashtag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--esp-3);
-  padding: var(--esp-2) var(--esp-3);
-  border: 0;
-  border-radius: var(--radio);
-  background: none;
-  color: var(--color-crema);
-  font-family: var(--fuente-titulos);
-  font-size: clamp(1.75rem, 8vw, 2.5rem);
-  font-style: italic;
-  overflow-wrap: anywhere;
-}
-
 /* Pie */
 .pie {
   display: grid;

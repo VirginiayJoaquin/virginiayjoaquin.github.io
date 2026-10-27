@@ -2,11 +2,6 @@ import { config } from './config.js';
 import { urlGoogleCalendar, descargarIcs } from './calendar.js';
 import { esc, fechaLarga, fechaCorta, diaYMes, hora, nombresNovios } from './utils.js';
 
-const ICONO_COPIAR =
-  '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
-const ICONO_INSTAGRAM =
-  '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
-
 // Textos sueltos: cualquier elemento con data-texto="clave" recibe el valor correspondiente.
 function renderTextos() {
   const { novios, textos, fecha, rsvp } = config;
@@ -86,7 +81,11 @@ function initDesplegables() {
 }
 
 function renderDressCode() {
-  const { tipo, descripcion, nota, colores } = config.dressCode;
+  const { mostrar, tipo, descripcion, nota, colores } = config.dressCode;
+  if (mostrar === false) {
+    document.getElementById('dresscode').hidden = true;
+    return;
+  }
   document.querySelector('[data-dresscode]').innerHTML = `
     <p class="dresscode__tipo">${esc(tipo)}</p>
     <p class="dresscode__descripcion">${esc(descripcion)}</p>
@@ -117,26 +116,10 @@ function renderTips() {
     .join('');
 }
 
-function renderRedes() {
-  const { hashtag, texto, instagram } = config.redes;
-  document.querySelector('[data-redes]').innerHTML = `
-    <p class="seccion__intro">${esc(texto)}</p>
-    <button class="redes__hashtag" type="button" data-copiar="${esc(hashtag)}" data-copiar-aviso="Hashtag copiado">
-      <span>${esc(hashtag)}</span>${ICONO_COPIAR}<span class="visualmente-oculto">(copiar)</span>
-    </button>
-    ${
-      instagram?.url
-        ? `<a class="boton boton--contorno-claro" href="${esc(instagram.url)}" target="_blank" rel="noopener">
-            ${ICONO_INSTAGRAM}<span>${esc(instagram.usuario)}</span></a>`
-        : ''
-    }`;
-}
-
 export function renderContenido() {
   renderTextos();
   renderEventos();
   initDesplegables();
   renderDressCode();
   renderTips();
-  renderRedes();
 }

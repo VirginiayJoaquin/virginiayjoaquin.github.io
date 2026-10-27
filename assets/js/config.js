@@ -6,12 +6,12 @@
 
 export const config = {
   novios: {
-    nombre1: 'Lucía',
-    nombre2: 'Tomás',
+    nombre1: 'Vicka',
+    nombre2: 'Joaco',
   },
 
   // Fecha y hora a la que apunta la cuenta regresiva (normalmente, el inicio de la ceremonia).
-  fecha: '2027-03-13T17:30:00-03:00',
+  fecha: '2027-02-13T17:30:00-03:00',
   zonaHoraria: 'America/Montevideo',
 
   musica: {
@@ -32,27 +32,27 @@ export const config = {
     {
       id: 'ceremonia',
       titulo: 'Ceremonia',
-      inicio: '2027-03-13T17:30:00-03:00',
-      fin: '2027-03-13T18:30:00-03:00',
-      lugar: 'Capilla del Olivar',
-      direccion: 'Camino de los Olivos 1234, Canelones',
-      descripcion: 'Te pedimos llegar 15 minutos antes.',
+      inicio: '2027-02-13T17:30:00-03:00',
+      fin: '2027-02-13T18:30:00-03:00',
+      lugar: 'AVA Experiencia Gourmet',
+      direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
+      descripcion: 'Al aire libre.',
       mapas: {
-        google: 'https://www.google.com/maps/search/?api=1&query=Camino+de+los+Olivos+1234+Canelones+Uruguay',
-        waze: 'https://waze.com/ul?q=Camino%20de%20los%20Olivos%201234%20Canelones&navigate=yes',
+        google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
+        waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
       },
     },
     {
       id: 'fiesta',
       titulo: 'Fiesta',
-      inicio: '2027-03-13T20:00:00-03:00',
-      fin: '2027-03-14T05:00:00-03:00',
-      lugar: 'Estancia Las Higueras',
-      direccion: 'Ruta 8 km 32, Pando, Canelones',
-      descripcion: 'Cena, brindis y baile hasta que salga el sol.',
+      inicio: '2027-02-13T20:00:00-03:00',
+      fin: '2027-02-14T05:00:00-03:00',
+      lugar: 'AVA Experiencia Gourmet',
+      direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
+      descripcion: 'En el salón, a continuación de la ceremonia.',
       mapas: {
-        google: 'https://www.google.com/maps/search/?api=1&query=Ruta+8+km+32+Pando+Canelones+Uruguay',
-        waze: 'https://waze.com/ul?q=Ruta%208%20km%2032%20Pando&navigate=yes',
+        google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
+        waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
       },
     },
   ],
@@ -61,7 +61,7 @@ export const config = {
   appsScriptUrl: '',
 
   rsvp: {
-    fechaLimite: '2027-02-13T23:59:00-03:00',
+    fechaLimite: '2027-01-13T23:59:00-03:00',
     // Cupo máximo que se ofrece cuando la persona entra sin código de invitado.
     lugaresSinCodigo: 2,
   },
@@ -76,8 +76,10 @@ export const config = {
   ],
 
   dressCode: {
+    // false = la sección no se muestra (los datos quedan guardados para cuando se defina).
+    mostrar: false,
     tipo: 'Elegante sport',
-    descripcion: 'Vení cómodo y elegante: la fiesta es al aire libre y sobre césped.',
+    descripcion: 'Vení cómodo y elegante.',
     nota: 'Te sugerimos tonos tierra y verdes. El blanco, para la novia.',
     colores: [
       { nombre: 'Verde oliva', valor: '#6b7240' },
@@ -90,20 +92,16 @@ export const config = {
 
   tips: [
     {
-      titulo: 'Alojamiento',
-      texto: 'Hay hoteles y cabañas en Pando y Atlántida, a 15 minutos de la estancia. Escribinos si querés recomendaciones.',
+      titulo: 'Ceremonia al aire libre',
+      texto: 'La ceremonia es afuera, frente a la rambla: traé algo liviano por si se levanta viento. Después seguimos en el salón.',
     },
     {
-      titulo: 'Estacionamiento',
-      texto: 'La estancia tiene estacionamiento propio y gratuito, con personal de seguridad toda la noche.',
+      titulo: 'Alojamiento',
+      texto: 'Si venís de afuera de Montevideo, escribinos y te pasamos recomendaciones de hoteles cerca.',
     },
     {
       titulo: 'Traslado',
-      texto: 'Va a haber un ómnibus de vuelta a Montevideo a las 3:00 y a las 5:00. Si brindás, no manejes.',
-    },
-    {
-      titulo: 'Calzado',
-      texto: 'La fiesta es sobre césped: los tacos finos pueden ser un desafío. Pensá en taco ancho o plataforma.',
+      texto: 'Si brindás, no manejes: coordiná con alguien o pedí un taxi para la vuelta.',
     },
   ],
 
@@ -114,25 +112,16 @@ export const config = {
         banco: 'BROU',
         moneda: 'Pesos uruguayos',
         tipo: 'Caja de ahorro',
-        titular: 'Lucía Fernández',
+        titular: 'Nombre del titular',
         numero: '001234567-00001',
       },
       {
         banco: 'BROU',
         moneda: 'Dólares',
         tipo: 'Caja de ahorro',
-        titular: 'Lucía Fernández',
+        titular: 'Nombre del titular',
         numero: '001234567-00002',
       },
     ],
-  },
-
-  redes: {
-    hashtag: '#LuciayTomás2027',
-    texto: 'Compartí tus fotos y videos de la noche con nuestro hashtag.',
-    instagram: {
-      usuario: '@luciaytomas',
-      url: 'https://www.instagram.com/',
-    },
   },
 };
