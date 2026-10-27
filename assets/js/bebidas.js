@@ -18,6 +18,9 @@ const ICONOS = {
     '<path d="M7 3h10l-.4 5a4.6 4.6 0 0 1-9.2 0z"/><path d="M7.3 6.5h9.4"/><path d="M12 12.6V20M8.5 21h7"/><path d="M15.5 3a2.5 2.5 0 0 1 5 0z"/>',
   ),
   gin: trazo('<path d="M6.5 4h11c.8 4-1.5 8-5.5 8s-6.3-4-5.5-8z"/><path d="M6.8 7.5h10.4"/><path d="M12 12v8M8.5 21h7"/><circle cx="10.5" cy="9.3" r=".6"/><circle cx="13.5" cy="10" r=".6"/>'),
+  'sin-alcohol': trazo(
+    '<path d="M7 7h10l-1.3 13a1 1 0 0 1-1 .9H9.3a1 1 0 0 1-1-.9z"/><path d="m13 7 2-4h2.5"/><circle cx="11" cy="12" r=".7"/><circle cx="13.2" cy="14.8" r=".7"/><circle cx="10.6" cy="17.2" r=".7"/>',
+  ),
 };
 const ICONO_GENERICO = trazo('<path d="M7 3h10l-1 6a4 4 0 0 1-8 0z"/><path d="M12 13v7M8.5 21h7"/>');
 

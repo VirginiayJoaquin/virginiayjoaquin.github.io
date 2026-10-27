@@ -74,6 +74,7 @@ export const config = {
     { id: 'whisky', nombre: 'Whisky' },
     { id: 'aperol', nombre: 'Aperol' },
     { id: 'gin', nombre: 'Gin' },
+    { id: 'sin-alcohol', nombre: 'Sin alcohol' },
   ],
 
   galeria: [
