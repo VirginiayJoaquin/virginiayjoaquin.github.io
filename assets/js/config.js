@@ -46,7 +46,7 @@ export const config = {
   ],
 
   // URL del Web App de Apps Script. Vacía = modo demo (nada se envía ni se guarda).
-  appsScriptUrl: '',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzQPJIrQXF_ktb0ePAYak7ZRCbgFWYIURG2Krbr0To33ujwwZ2dx6S2cTC1khxB6B6s/exec',
 
   rsvp: {
     fechaLimite: '2027-01-13T23:59:00-03:00',
