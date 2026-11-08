@@ -11,8 +11,9 @@
 
 const URL_INVITACION = 'https://joacoherrera.github.io/invitacion/';
 
-// Tienen que coincidir con config.js (bebidas[].id, alimentacion[].id y rsvp.lugaresSinCodigo).
+// Tienen que coincidir con config.js (bebidas[].id, bebidasMaximo, alimentacion[].id y rsvp.lugaresSinCodigo).
 const BEBIDAS_VALIDAS = ['cerveza', 'fernet', 'whisky', 'aperol', 'gin', 'sin-alcohol'];
+const BEBIDAS_MAXIMO = 2;
 const ALIMENTACION_VALIDA = ['vegetariano', 'vegano', 'celiaco', 'sin-lactosa', 'diabetico'];
 const LUGARES_SIN_CODIGO = 2;
 
@@ -22,7 +23,7 @@ const HOJAS = {
     nombre: 'RSVP',
     columnas: ['Fecha', 'Código', 'Invitación', 'Nombre', 'Asiste', 'Alimentación', 'Otra indicación', 'Mensaje'],
   },
-  bebidas: { nombre: 'Bebidas', columnas: ['Fecha', 'Código', 'Nombre', 'Bebida'] },
+  bebidas: { nombre: 'Bebidas', columnas: ['Fecha', 'Código', 'Nombre', 'Bebidas'] },
   canciones: { nombre: 'Canciones', columnas: ['Fecha', 'Código', 'Nombre', 'Canción', 'Artista'] },
 };
 
@@ -144,20 +145,24 @@ function guardarRsvp(datos) {
   hoja.getRange(hoja.getLastRow() + 1, 1, filas.length, filas[0].length).setValues(filas);
 }
 
-// Una bebida por persona. Se reemplaza solo la de quien vuelve a enviar
+// Hasta BEBIDAS_MAXIMO bebidas por persona. Se reemplaza solo la elección de quien vuelve a enviar
 // (mismo código y mismo nombre), así los integrantes de una familia no se pisan.
 function guardarBebidas(datos) {
   const invitado = buscarInvitado(normalizarCodigo(datos.codigo));
   const codigo = invitado ? invitado.codigo : '';
   const personas = validarPersonas(datos.personas, invitado);
-  personas.forEach((p) => {
-    if (!BEBIDAS_VALIDAS.includes(String(p.bebida))) throw new ErrorValidacion('Bebida desconocida');
+  const elecciones = personas.map((p) => {
+    const bebidas = Array.isArray(p.bebidas) ? [...new Set(p.bebidas.map(String))] : [];
+    if (!bebidas.length) throw new ErrorValidacion('Elegí al menos una bebida');
+    if (bebidas.length > BEBIDAS_MAXIMO) throw new ErrorValidacion('Se pueden elegir hasta ' + BEBIDAS_MAXIMO + ' bebidas');
+    if (bebidas.some((b) => !BEBIDAS_VALIDAS.includes(b))) throw new ErrorValidacion('Bebida desconocida');
+    return { nombre: p.nombre, bebidas: bebidas };
   });
 
-  personas.forEach((p) => {
+  elecciones.forEach((p) => {
     const persona = normalizarNombre(p.nombre);
     const esLaMisma = (fila) => normalizarCodigo(fila[1]) === codigo && normalizarNombre(fila[2]) === persona;
-    guardarFila(HOJAS.bebidas, codigo && esLaMisma, [new Date(), codigo, p.nombre, p.bebida]);
+    guardarFila(HOJAS.bebidas, codigo && esLaMisma, [new Date(), codigo, p.nombre, p.bebidas.join(', ')]);
   });
 }
 

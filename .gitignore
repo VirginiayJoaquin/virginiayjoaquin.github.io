@@ -12,6 +12,7 @@ $RECYCLE.BIN/
 
 # Claude Code (configuración local de cada máquina)
 .claude/settings.local.json
+.claude/launch.json
 
 # Secretos y credenciales
 .env

@@ -14,14 +14,14 @@ Las crea el script (menú **Invitación → Preparar planilla**):
 |-------------|-------------------------------------------------------------------|----------------|
 | `Invitados` | Código · Nombre a mostrar · Integrantes · Lugares · Notas · Link | Vos |
 | `RSVP`      | Fecha · Código · Invitación · Nombre · Asiste · Alimentación · Otra indicación · Mensaje | El sitio |
-| `Bebidas`   | Fecha · Código · Nombre · Bebida | El sitio |
+| `Bebidas`   | Fecha · Código · Nombre · Bebidas | El sitio |
 | `Canciones` | Fecha · Código · Nombre · Canción · Artista                       | El sitio       |
 
 - En el sitio, las invitaciones para varias personas muestran **una pestaña por integrante**.
 - **RSVP:** una fila por persona (si viene o no y su alimentación). Si vuelven a confirmar con
   el mismo link, se **reemplazan** todas las filas de esa invitación. El mensaje queda en la
   fila de la primera persona.
-- **Bebidas:** una bebida por persona. Se reemplaza solo si vuelve a enviar la misma persona
+- **Bebidas:** hasta 2 bebidas por persona (p. ej. `cerveza, gin`). Se reemplaza solo si vuelve a enviar la misma persona
   (mismo link y mismo nombre, sin importar mayúsculas ni tildes).
 - Sin código (alguien que entró sin link personal) siempre se agrega una fila nueva.
 - En Canciones siempre se agrega una fila (cada uno puede sugerir varias).
@@ -109,8 +109,8 @@ Guardar no alcanza: el sitio sigue usando la versión publicada. Para publicar e
 Así la URL sigue siendo la misma. **No uses "Nueva implementación"**: crea una URL distinta
 y habría que cambiarla en `config.js`.
 
-Si cambiás las bebidas o las opciones de alimentación en `config.js`, actualizá también
-`BEBIDAS_VALIDAS` o `ALIMENTACION_VALIDA` en `Code.gs` (y publicá una nueva versión);
+Si cambiás las bebidas, el máximo de bebidas o las opciones de alimentación en `config.js`,
+actualizá también `BEBIDAS_VALIDAS`, `BEBIDAS_MAXIMO` o `ALIMENTACION_VALIDA` en `Code.gs` (y publicá una nueva versión);
 si no, el script rechaza las opciones nuevas.
 
 ## Sobre la privacidad

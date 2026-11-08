@@ -134,8 +134,8 @@ No hay sección de redes ni hashtag (se decidió quitarla).
   `config.alimentacion`), otra indicación, mensaje (solo en la primera fila).
   Payload: `{ tipo: 'rsvp', codigo, personas: [{ nombre, asiste, alimentacion: ['celiaco'], otra }], mensaje }`.
   Con reenvío por código se reemplazan todas las filas de esa invitación.
-- `Bebidas`: una bebida por persona: fecha, código, nombre, bebida.
-  Payload: `{ tipo: 'bebidas', codigo, personas: [{ nombre, bebida: 'gin' }] }`.
+- `Bebidas`: hasta `bebidasMaximo` (2) bebidas por persona: fecha, código, nombre, bebidas (ids separados por coma).
+  Payload: `{ tipo: 'bebidas', codigo, personas: [{ nombre, bebidas: ['cerveza', 'gin'] }] }`.
   Validar en Apps Script que cada opción sea conocida. Con reenvíos, prevalece la última por código + nombre.
 - `Canciones`: fecha, código, nombre, canción, artista.
 

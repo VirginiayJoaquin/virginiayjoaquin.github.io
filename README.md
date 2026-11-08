@@ -24,6 +24,7 @@ los formularios simulan el envío (no se guarda nada) y hay dos códigos de invi
 para probar la personalización:
 
 - `?i=demo-k7p2q` → Familia Rodríguez, 4 integrantes (pestañas)
+- `?i=demo-r5t8w` → Familia Martínez, 3 integrantes (pestañas)
 - `?i=demo-p3m8c` → Juan y acompañante (1 integrante + 1 acompañante sin nombre)
 - `?i=demo-x9wfa` → Sofía, 1 lugar
 

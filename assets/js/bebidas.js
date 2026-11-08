@@ -30,23 +30,32 @@ export function initBebidas(promesaInvitado) {
     return;
   }
   const idsValidos = new Set(opciones.map((b) => b.id));
+  const maximo = config.bebidasMaximo ?? 2;
   let invitado = null;
 
-  // Cada persona de la invitación elige una sola bebida, en su pestaña.
+  // Cada persona de la invitación elige hasta `maximo` bebidas, en su pestaña.
   const pestanas = crearPestanas(form.querySelector('[data-bebidas-personas]'), {
     prefijo: 'bebidas',
     renderPanel: (p) => `
       <fieldset class="campo">
         <legend class="campo__label">${segun(p, '¿Qué te gustaría tomar?', (n) => `¿Qué le gustaría tomar a ${n}?`)}</legend>
-        <p class="campo__ayuda">Elegí una.</p>
+        <p class="campo__ayuda">${maximo === 1 ? 'Elegí una.' : `Podés elegir hasta ${maximo}.`}</p>
         <div class="elecciones">
-          ${tarjetasOpcion({ tipo: 'radio', name: `bebida-${p.uid}`, opciones, iconos: ICONOS, iconoGenerico: ICONO_GENERICO })}
+          ${tarjetasOpcion({ tipo: 'checkbox', name: `bebida-${p.uid}`, opciones, iconos: ICONOS, iconoGenerico: ICONO_GENERICO })}
         </div>
       </fieldset>`,
     estaCompleta: (panel) => {
       const nombre = panel.querySelector('[data-persona-nombre]');
       return Boolean(panel.querySelector('[name^="bebida-"]:checked')) && (!nombre || nombre.value.trim().length >= 2);
     },
+  });
+
+  // Al llegar al máximo, las demás opciones de esa persona quedan deshabilitadas hasta que destilde alguna.
+  form.addEventListener('change', (evento) => {
+    if (!evento.target.name?.startsWith('bebida-')) return;
+    const inputs = [...form.querySelectorAll(`[name="${evento.target.name}"]`)];
+    const lleno = inputs.filter((i) => i.checked).length >= maximo;
+    inputs.forEach((i) => (i.disabled = lleno && !i.checked));
   });
 
   pestanas.establecer(personasDeInvitado(null));
@@ -63,8 +72,14 @@ export function initBebidas(promesaInvitado) {
     // Quien no eligió nada simplemente no se envía (puede que no venga).
     const elegidas = pestanas
       .personas()
-      .map((p) => ({ ...p, bebida: form.elements[`bebida-${p.uid}`].value }))
-      .filter((p) => idsValidos.has(p.bebida));
+      .map((p) => ({
+        ...p,
+        bebidas: [...p.panel.querySelectorAll(`[name="bebida-${p.uid}"]:checked`)]
+          .map((i) => i.value)
+          .filter((id) => idsValidos.has(id))
+          .slice(0, maximo),
+      }))
+      .filter((p) => p.bebidas.length);
 
     if (!elegidas.length) {
       mostrarEstado(form, 'Elegí al menos una bebida.', 'error');
@@ -84,14 +99,14 @@ export function initBebidas(promesaInvitado) {
     try {
       await enviar('bebidas', {
         codigo: invitado?.codigo ?? '',
-        personas: elegidas.map(({ nombre, bebida }) => ({ nombre, bebida })),
+        personas: elegidas.map(({ nombre, bebidas }) => ({ nombre, bebidas })),
       });
       const demo = modoDemo() ? ' (Modo demo: no se guardó.)' : '';
       const una = pestanas.personas().length === 1;
       mostrarEstado(
         form,
         una
-          ? `¡Gracias! Anotamos tu bebida.${demo} Si cambiás de idea, podés volver a enviar.`
+          ? `¡Gracias! Anotamos tu elección.${demo} Si cambiás de idea, podés volver a enviar.`
           : `¡Gracias! Anotamos las bebidas.${demo} Si alguien cambia de idea, pueden volver a enviar.`,
         'ok',
       );

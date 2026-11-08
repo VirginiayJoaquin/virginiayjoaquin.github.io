@@ -356,6 +356,16 @@ select.campo__input {
   border-color: var(--color-error);
 }
 
+/* Opciones bloqueadas al llegar al máximo permitido */
+.eleccion:has(.eleccion__input:disabled) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.eleccion:has(.eleccion__input:disabled):hover {
+  border-color: var(--color-salvia);
+}
+
 /* Pestañas por invitado (RSVP y bebidas), con forma de pestañas del navegador */
 .pestanas {
   display: grid;
@@ -371,20 +381,25 @@ select.campo__input {
   scrollbar-width: none;
 }
 
+/* Las pestañas se reparten el ancho; si un nombre no entra, se corta con "…" */
 .pestanas__lista {
   display: flex;
+  flex: 1 1 auto;
   gap: 3px;
+  min-width: 0;
 }
 
 .pestana {
   position: relative;
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 0;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  gap: 0.3rem;
+  min-width: 0;
   max-width: 10rem;
   margin-bottom: -1px;
-  padding: 0.6rem 0.9rem;
+  padding: 0.6rem 0.45rem;
   border: 1px solid var(--color-salvia);
   border-radius: var(--radio-lg) var(--radio-lg) 0 0;
   background: var(--color-crema-oscuro);
@@ -421,8 +436,8 @@ select.campo__input {
 .pestana[data-completa]::after {
   content: '';
   flex: 0 0 auto;
-  width: 1rem;
-  height: 1rem;
+  width: 0.9rem;
+  height: 0.9rem;
   border-radius: 50%;
   background: var(--color-oliva)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fffdf8' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E")

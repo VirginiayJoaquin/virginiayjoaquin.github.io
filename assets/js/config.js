@@ -64,9 +64,10 @@ export const config = {
     { id: 'diabetico', nombre: 'Diabético/a' },
   ],
 
-  // Cada persona elige una. `id` es lo que se guarda en la planilla (coincide con BEBIDAS_VALIDAS en Code.gs);
+  // Cada persona elige hasta `bebidasMaximo`. `id` es lo que se guarda en la planilla (coincide con BEBIDAS_VALIDAS en Code.gs);
   // `icono` es opcional (si falta, se usa el id;
   // si no hay ícono con ese nombre en bebidas.js, se muestra una copa genérica).
+  bebidasMaximo: 2,
   bebidas: [
     { id: 'cerveza', nombre: 'Cerveza' },
     { id: 'fernet', nombre: 'Fernet' },
