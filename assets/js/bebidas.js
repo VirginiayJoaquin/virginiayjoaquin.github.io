@@ -44,10 +44,13 @@ export function initBebidas(promesaInvitado) {
     .join('');
 
   let invitado = null;
+  // Cada persona elige por separado, así que el nombre de la invitación ("Familia Pérez")
+  // solo se precarga cuando es para una sola persona.
+  const esIndividual = () => invitado?.lugares === 1;
   promesaInvitado.then((datos) => {
     if (!datos) return;
     invitado = datos;
-    if (!form.elements.nombre.value) form.elements.nombre.value = datos.nombre;
+    if (esIndividual() && !form.elements.nombre.value) form.elements.nombre.value = datos.nombre;
   });
 
   const idsValidos = new Set(opciones.map((b) => b.id));
@@ -70,11 +73,18 @@ export function initBebidas(promesaInvitado) {
     marcarEnviando(form, true);
     try {
       await enviar('bebidas', { codigo: invitado?.codigo ?? '', nombre, bebidas });
-      mostrarEstado(
-        form,
-        `¡Gracias! Anotamos tus bebidas.${modoDemo() ? ' (Modo demo: no se guardó.)' : ''} Si cambiás de idea, podés volver a enviar.`,
-        'ok',
-      );
+      const demo = modoDemo() ? ' (Modo demo: no se guardó.)' : '';
+      if (esIndividual()) {
+        mostrarEstado(form, `¡Gracias! Anotamos tus bebidas.${demo} Si cambiás de idea, podés volver a enviar.`, 'ok');
+      } else {
+        // Se vacía para que el siguiente de la familia cargue lo suyo.
+        form.reset();
+        mostrarEstado(
+          form,
+          `¡Gracias, ${nombre.split(' ')[0]}! Anotamos tus bebidas.${demo} ¿Alguien más? Que elija con su nombre.`,
+          'ok',
+        );
+      }
     } catch (error) {
       console.error(error);
       mostrarEstado(form, 'No pudimos enviar tu elección. Revisá tu conexión y probá de nuevo.', 'error');

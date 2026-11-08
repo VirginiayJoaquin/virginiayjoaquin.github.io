@@ -577,8 +577,10 @@
 }
 
 @media (min-width: 48rem) {
+  /* Con un solo evento la tarjeta queda centrada; con dos, una al lado de la otra. */
   .eventos {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(0, 26rem));
+    justify-content: center;
   }
 
   .tips {

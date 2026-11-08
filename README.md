@@ -28,6 +28,6 @@ para probar la personalización:
 
 ## Pendiente
 
-- Backend en Apps Script (RSVP, canciones, invitados por código).
+- Conectar el backend: seguir `apps-script/README.md` y poner la URL en `appsScriptUrl`.
 - PWA (manifest, service worker, íconos).
 - Fotos reales (WebP) en `assets/img/galeria/` y música en `assets/audio/cancion.mp3`.

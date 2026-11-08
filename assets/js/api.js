@@ -29,7 +29,7 @@ export async function obtenerInvitado(codigo) {
   }
 }
 
-// tipo: 'rsvp' | 'cancion'. Lanza un Error si el envío falla.
+// tipo: 'rsvp' | 'bebidas' | 'cancion'. Lanza un Error si el envío falla.
 export async function enviar(tipo, datos) {
   if (modoDemo()) {
     await esperar(700);

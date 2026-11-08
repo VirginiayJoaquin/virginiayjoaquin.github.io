@@ -84,7 +84,7 @@
       <!-- 5. Ceremonia y fiesta -->
       <section class="seccion eventos-seccion" id="eventos" aria-labelledby="eventos-titulo">
         <div class="contenedor contenedor--ancho">
-          <h2 class="titulo-seccion revelar" id="eventos-titulo">Ceremonia y fiesta</h2>
+          <h2 class="titulo-seccion revelar" id="eventos-titulo">Cuándo y dónde</h2>
           <div class="eventos" data-eventos></div>
         </div>
       </section>
@@ -118,6 +118,13 @@
                 <p class="campo__ayuda" id="rsvp-cantidad-ayuda">Contándote a vos.</p>
                 <p class="campo__error" id="rsvp-cantidad-error" data-error-de="cantidad" hidden></p>
               </div>
+              <!-- Solo aparece si la invitación es para varios y no van todos -->
+              <div class="campo" data-rsvp-quienes hidden>
+                <label class="campo__label" for="rsvp-quienes">¿Quiénes van?</label>
+                <input class="campo__input" id="rsvp-quienes" name="quienes" type="text" maxlength="200" placeholder="Ej.: Ana, Juan y Sofi" aria-describedby="rsvp-quienes-ayuda rsvp-quienes-error">
+                <p class="campo__ayuda" id="rsvp-quienes-ayuda" data-rsvp-quienes-ayuda></p>
+                <p class="campo__error" id="rsvp-quienes-error" data-error-de="quienes" hidden></p>
+              </div>
               <div class="campo">
                 <label class="campo__label" for="rsvp-restricciones">Restricciones alimentarias <span class="campo__opcional">(opcional)</span></label>
                 <input class="campo__input" id="rsvp-restricciones" name="restricciones" type="text" maxlength="200" placeholder="Vegetariano, celíaco, alergias…">
@@ -149,16 +156,17 @@
           <p class="seccion__intro">Contanos qué te gusta tomar así no falta nada. Podés elegir varias.</p>
 
           <form class="formulario tarjeta" data-bebidas novalidate>
+            <div class="campo">
+              <label class="campo__label" for="bebidas-nombre">Tu nombre</label>
+              <input class="campo__input" id="bebidas-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="bebidas-nombre-ayuda bebidas-nombre-error">
+              <p class="campo__ayuda" id="bebidas-nombre-ayuda">Si vienen varios, que cada uno elija con su nombre.</p>
+              <p class="campo__error" id="bebidas-nombre-error" data-error-de="nombre" hidden></p>
+            </div>
             <fieldset class="campo" aria-describedby="bebidas-opciones-error">
               <legend class="campo__label">¿Qué te gustaría tomar?</legend>
               <div class="bebidas__opciones" data-bebidas-opciones></div>
               <p class="campo__error" id="bebidas-opciones-error" data-error-de="bebidas" hidden></p>
             </fieldset>
-            <div class="campo">
-              <label class="campo__label" for="bebidas-nombre">Tu nombre</label>
-              <input class="campo__input" id="bebidas-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="bebidas-nombre-error">
-              <p class="campo__error" id="bebidas-nombre-error" data-error-de="nombre" hidden></p>
-            </div>
             <button class="boton boton--bloque" type="submit">Enviar</button>
             <p class="formulario__estado" data-estado role="status"></p>
           </form>

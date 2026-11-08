@@ -11,7 +11,7 @@ export const config = {
   },
 
   // Fecha y hora a la que apunta la cuenta regresiva (normalmente, el inicio de la ceremonia).
-  fecha: '2027-02-13T17:30:00-03:00',
+  fecha: '2027-02-13T19:00:00-03:00',
   zonaHoraria: 'America/Montevideo',
 
   musica: {
@@ -28,28 +28,16 @@ export const config = {
     pie: 'Gracias por ser parte de nuestra historia',
   },
 
+  // Un solo evento: todos están invitados a la ceremonia y a la fiesta, en el mismo lugar.
   eventos: [
     {
-      id: 'ceremonia',
-      titulo: 'Ceremonia',
-      inicio: '2027-02-13T17:30:00-03:00',
-      fin: '2027-02-13T18:30:00-03:00',
-      lugar: 'AVA Experiencia Gourmet',
-      direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
-      descripcion: 'Al aire libre.',
-      mapas: {
-        google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
-        waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
-      },
-    },
-    {
-      id: 'fiesta',
-      titulo: 'Fiesta',
-      inicio: '2027-02-13T20:00:00-03:00',
+      id: 'casamiento',
+      titulo: 'Ceremonia y fiesta',
+      inicio: '2027-02-13T19:00:00-03:00',
       fin: '2027-02-14T05:00:00-03:00',
       lugar: 'AVA Experiencia Gourmet',
       direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
-      descripcion: 'En el salón, a continuación de la ceremonia.',
+      descripcion: 'La ceremonia empieza a las 19:00 en punto, al aire libre. Después seguimos con la fiesta en el salón.',
       mapas: {
         google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
         waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
@@ -105,10 +93,6 @@ export const config = {
     {
       titulo: 'Ceremonia al aire libre',
       texto: 'La ceremonia es afuera, frente a la rambla: traé algo liviano por si se levanta viento. Después seguimos en el salón.',
-    },
-    {
-      titulo: 'Alojamiento',
-      texto: 'Si venís de afuera de Montevideo, escribinos y te pasamos recomendaciones de hoteles cerca.',
     },
     {
       titulo: 'Traslado',
