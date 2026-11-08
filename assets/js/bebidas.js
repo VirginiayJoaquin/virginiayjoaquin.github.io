@@ -1,10 +1,8 @@
 import { config } from './config.js';
 import { enviar, modoDemo } from './api.js';
-import { esc } from './utils.js';
-import { limpiarErrores, mostrarError, enfocarPrimerError, mostrarEstado, marcarEnviando } from './forms.js';
-
-const trazo = (contenido) =>
-  `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${contenido}</svg>`;
+import { trazo, tarjetasOpcion } from './opciones.js';
+import { crearPestanas, personasDeInvitado, segun } from './personas.js';
+import { limpiarErrores, mostrarError, mostrarEstado, marcarEnviando } from './forms.js';
 
 const ICONOS = {
   cerveza: trazo(
@@ -31,63 +29,75 @@ export function initBebidas(promesaInvitado) {
     document.getElementById('bebidas').hidden = true;
     return;
   }
-
-  form.querySelector('[data-bebidas-opciones]').innerHTML = opciones
-    .map(
-      (b) => `
-      <label class="bebida">
-        <input class="bebida__input" type="checkbox" name="bebidas" value="${esc(b.id)}">
-        <span class="bebida__icono">${ICONOS[b.icono ?? b.id] ?? ICONO_GENERICO}</span>
-        <span class="bebida__nombre">${esc(b.nombre)}</span>
-      </label>`,
-    )
-    .join('');
-
+  const idsValidos = new Set(opciones.map((b) => b.id));
   let invitado = null;
-  // Cada persona elige por separado, así que el nombre de la invitación ("Familia Pérez")
-  // solo se precarga cuando es para una sola persona.
-  const esIndividual = () => invitado?.lugares === 1;
+
+  // Cada persona de la invitación elige una sola bebida, en su pestaña.
+  const pestanas = crearPestanas(form.querySelector('[data-bebidas-personas]'), {
+    prefijo: 'bebidas',
+    renderPanel: (p) => `
+      <fieldset class="campo">
+        <legend class="campo__label">${segun(p, '¿Qué te gustaría tomar?', (n) => `¿Qué le gustaría tomar a ${n}?`)}</legend>
+        <p class="campo__ayuda">Elegí una.</p>
+        <div class="elecciones">
+          ${tarjetasOpcion({ tipo: 'radio', name: `bebida-${p.uid}`, opciones, iconos: ICONOS, iconoGenerico: ICONO_GENERICO })}
+        </div>
+      </fieldset>`,
+    estaCompleta: (panel) => {
+      const nombre = panel.querySelector('[data-persona-nombre]');
+      return Boolean(panel.querySelector('[name^="bebida-"]:checked')) && (!nombre || nombre.value.trim().length >= 2);
+    },
+  });
+
+  pestanas.establecer(personasDeInvitado(null));
   promesaInvitado.then((datos) => {
     if (!datos) return;
     invitado = datos;
-    if (esIndividual() && !form.elements.nombre.value) form.elements.nombre.value = datos.nombre;
+    pestanas.establecer(personasDeInvitado(datos));
   });
-
-  const idsValidos = new Set(opciones.map((b) => b.id));
 
   form.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     limpiarErrores(form);
-    const nombre = form.elements.nombre.value.trim();
-    const bebidas = [...form.querySelectorAll('[name="bebidas"]:checked')]
-      .map((input) => input.value)
-      .filter((id) => idsValidos.has(id));
 
-    if (nombre.length < 2) mostrarError(form, 'nombre', 'Contanos quién sos.');
-    if (!bebidas.length) mostrarError(form, 'bebidas', 'Elegí al menos una bebida.');
-    if (nombre.length < 2 || !bebidas.length) {
-      enfocarPrimerError(form);
+    // Quien no eligió nada simplemente no se envía (puede que no venga).
+    const elegidas = pestanas
+      .personas()
+      .map((p) => ({ ...p, bebida: form.elements[`bebida-${p.uid}`].value }))
+      .filter((p) => idsValidos.has(p.bebida));
+
+    if (!elegidas.length) {
+      mostrarEstado(form, 'Elegí al menos una bebida.', 'error');
+      return;
+    }
+    const sinNombre = elegidas.filter((p) => !p.fijo && p.nombre.length < 2);
+    if (sinNombre.length) {
+      sinNombre.forEach((p) =>
+        mostrarError(form, `nombre-${p.uid}`, p.vos ? 'Contanos quién sos.' : 'Contanos cómo se llama.'),
+      );
+      pestanas.activar(sinNombre[0].uid);
+      sinNombre[0].panel.querySelector('[aria-invalid="true"]').focus();
       return;
     }
 
     marcarEnviando(form, true);
     try {
-      await enviar('bebidas', { codigo: invitado?.codigo ?? '', nombre, bebidas });
+      await enviar('bebidas', {
+        codigo: invitado?.codigo ?? '',
+        personas: elegidas.map(({ nombre, bebida }) => ({ nombre, bebida })),
+      });
       const demo = modoDemo() ? ' (Modo demo: no se guardó.)' : '';
-      if (esIndividual()) {
-        mostrarEstado(form, `¡Gracias! Anotamos tus bebidas.${demo} Si cambiás de idea, podés volver a enviar.`, 'ok');
-      } else {
-        // Se vacía para que el siguiente de la familia cargue lo suyo.
-        form.reset();
-        mostrarEstado(
-          form,
-          `¡Gracias, ${nombre.split(' ')[0]}! Anotamos tus bebidas.${demo} ¿Alguien más? Que elija con su nombre.`,
-          'ok',
-        );
-      }
+      const una = pestanas.personas().length === 1;
+      mostrarEstado(
+        form,
+        una
+          ? `¡Gracias! Anotamos tu bebida.${demo} Si cambiás de idea, podés volver a enviar.`
+          : `¡Gracias! Anotamos las bebidas.${demo} Si alguien cambia de idea, pueden volver a enviar.`,
+        'ok',
+      );
     } catch (error) {
       console.error(error);
-      mostrarEstado(form, 'No pudimos enviar tu elección. Revisá tu conexión y probá de nuevo.', 'error');
+      mostrarEstado(form, 'No pudimos enviar la elección. Revisá tu conexión y probá de nuevo.', 'error');
     } finally {
       marcarEnviando(form, false);
     }

@@ -127,11 +127,16 @@ No hay sección de redes ni hashtag (se decidió quitarla).
 
 ## Google Sheets (pestañas previstas)
 
-- `Invitados`: código, nombre a mostrar, lugares asignados, notas.
-- `RSVP`: fecha, código, nombre, asiste (sí/no), cantidad, restricciones alimentarias, mensaje.
-- `Bebidas`: fecha, código, nombre, bebidas (ids separados por coma, p. ej. `cerveza, gin`).
-  Payload: `{ tipo: 'bebidas', codigo, nombre, bebidas: ['cerveza', 'gin'] }`.
-  Validar en Apps Script que cada bebida sea una opción conocida. Con reenvíos, la última respuesta por código prevalece.
+- `Invitados`: código, nombre a mostrar, integrantes (nombres separados por coma), lugares (opcional:
+  si supera a los integrantes, el resto son acompañantes sin nombre), notas, link.
+- En el sitio, RSVP y bebidas se responden **por persona**, con una pestaña por integrante (`personas.js`).
+- `RSVP`: una fila por persona: fecha, código, invitación, nombre, asiste (sí/no), alimentación (ids de
+  `config.alimentacion`), otra indicación, mensaje (solo en la primera fila).
+  Payload: `{ tipo: 'rsvp', codigo, personas: [{ nombre, asiste, alimentacion: ['celiaco'], otra }], mensaje }`.
+  Con reenvío por código se reemplazan todas las filas de esa invitación.
+- `Bebidas`: una bebida por persona: fecha, código, nombre, bebida.
+  Payload: `{ tipo: 'bebidas', codigo, personas: [{ nombre, bebida: 'gin' }] }`.
+  Validar en Apps Script que cada opción sea conocida. Con reenvíos, prevalece la última por código + nombre.
 - `Canciones`: fecha, código, nombre, canción, artista.
 
 ## Deploy

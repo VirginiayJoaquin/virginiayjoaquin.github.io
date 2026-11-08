@@ -3,7 +3,7 @@ import { obtenerInvitado } from './api.js';
 // Filtro barato antes de consultar: evita pedidos con basura en la URL.
 const CODIGO_VALIDO = /^[A-Za-z0-9_-]{4,40}$/;
 
-// Devuelve { codigo, nombre, lugares } o null. Sin código o con código inválido, la invitación queda genérica.
+// Devuelve { codigo, nombre, lugares, integrantes } o null. Sin código o con código inválido, la invitación queda genérica.
 export async function initGuest() {
   const codigo = new URLSearchParams(location.search).get('i')?.trim();
   if (!codigo || !CODIGO_VALIDO.test(codigo)) return null;
@@ -11,7 +11,9 @@ export async function initGuest() {
   const datos = await obtenerInvitado(codigo);
   if (!datos?.nombre) return null;
 
-  const invitado = { codigo, nombre: datos.nombre, lugares: Math.max(1, Number(datos.lugares) || 1) };
+  const integrantes = (Array.isArray(datos.integrantes) ? datos.integrantes : []).map(String).filter((n) => n.trim());
+  const lugares = Math.max(1, Number(datos.lugares) || 1, integrantes.length);
+  const invitado = { codigo, nombre: datos.nombre, lugares, integrantes };
   personalizar(invitado);
   return invitado;
 }

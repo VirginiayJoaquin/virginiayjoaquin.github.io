@@ -12,15 +12,16 @@ Las crea el script (menú **Invitación → Preparar planilla**):
 
 | Pestaña     | Columnas                                                          | Quién la llena |
 |-------------|-------------------------------------------------------------------|----------------|
-| `Invitados` | Código · Nombre a mostrar · Lugares · Notas · Link               | Vos            |
-| `RSVP`      | Fecha · Código · Nombre · Asiste · Cantidad · Quiénes van · Restricciones · Mensaje | El sitio |
-| `Bebidas`   | Fecha · Código · Nombre · Bebidas                                 | El sitio       |
+| `Invitados` | Código · Nombre a mostrar · Integrantes · Lugares · Notas · Link | Vos |
+| `RSVP`      | Fecha · Código · Invitación · Nombre · Asiste · Alimentación · Otra indicación · Mensaje | El sitio |
+| `Bebidas`   | Fecha · Código · Nombre · Bebida | El sitio |
 | `Canciones` | Fecha · Código · Nombre · Canción · Artista                       | El sitio       |
 
-- **RSVP:** una respuesta por invitación (link). Si vuelven a responder, se **reemplaza** la fila
-  anterior. Si la invitación es para varios y no van todos (p. ej. 3 de 4), se pide quiénes van
-  y queda en "Quiénes van"; si van todos, esa columna queda vacía.
-- **Bebidas:** una elección por persona. Se reemplaza solo si vuelve a enviar la misma persona
+- En el sitio, las invitaciones para varias personas muestran **una pestaña por integrante**.
+- **RSVP:** una fila por persona (si viene o no y su alimentación). Si vuelven a confirmar con
+  el mismo link, se **reemplazan** todas las filas de esa invitación. El mensaje queda en la
+  fila de la primera persona.
+- **Bebidas:** una bebida por persona. Se reemplaza solo si vuelve a enviar la misma persona
   (mismo link y mismo nombre, sin importar mayúsculas ni tildes).
 - Sin código (alguien que entró sin link personal) siempre se agrega una fila nueva.
 - En Canciones siempre se agrega una fila (cada uno puede sugerir varias).
@@ -60,7 +61,12 @@ En la pestaña `Invitados`, una fila por invitación (persona o familia):
 
 - **Código:** dejalo vacío, lo genera el script.
 - **Nombre a mostrar:** como querés que aparezca el saludo, p. ej. *Familia Pérez* o *Sofi*.
-- **Lugares:** cuántas personas incluye esa invitación (número).
+- **Integrantes:** el nombre de cada persona, separados por coma, p. ej.
+  *Martín Pérez, Laura Gómez, Sofi Pérez*. Cada uno va a tener su pestaña en el sitio.
+  Si la invitación es para una sola persona, podés dejarlo vacío y se usa el nombre a mostrar.
+- **Lugares:** opcional. Dejalo vacío y se cuentan los integrantes. Ponelo solo si hay
+  acompañantes sin nombre: p. ej. Integrantes *Juan Silva* y Lugares *2* → pestañas
+  "Juan Silva" y "Acompañante", donde completan el nombre.
 - **Notas:** lo que quieras, el sitio no lo muestra.
 
 Después: **Invitación → Generar códigos y links**. Se completan el código y el link
@@ -87,7 +93,7 @@ no cambia los códigos que ya existen. **No hace falta volver a implementar** pa
 1. Pegá la URL en el navegador. Tiene que mostrar:
    `{"ok":true,"mensaje":"La invitación está conectada."}`
 2. Agregale `?i=` y un código de la pestaña Invitados, p. ej. `.../exec?i=rak76k`.
-   Tiene que mostrar el nombre y los lugares de ese invitado.
+   Tiene que mostrar el nombre, los lugares y los integrantes de ese invitado.
 
 ### 7. Conectar el sitio
 
@@ -103,12 +109,13 @@ Guardar no alcanza: el sitio sigue usando la versión publicada. Para publicar e
 Así la URL sigue siendo la misma. **No uses "Nueva implementación"**: crea una URL distinta
 y habría que cambiarla en `config.js`.
 
-Si cambiás las bebidas en `config.js`, actualizá también `BEBIDAS_VALIDAS` en `Code.gs`
-(y publicá una nueva versión); si no, el script rechaza las bebidas nuevas.
+Si cambiás las bebidas o las opciones de alimentación en `config.js`, actualizá también
+`BEBIDAS_VALIDAS` o `ALIMENTACION_VALIDA` en `Code.gs` (y publicá una nueva versión);
+si no, el script rechaza las opciones nuevas.
 
 ## Sobre la privacidad
 
 - Con "Cualquier persona" cualquiera que tenga la URL puede usar el script, pero lo único
-  que devuelve es el nombre y los lugares de un código, y los códigos no se pueden adivinar.
+  que devuelve es el nombre y los integrantes de un código, y los códigos no se pueden adivinar.
 - La planilla en sí sigue siendo privada: solo la ven vos y quien compartas.
 - El script corre con tu cuenta, pero solo toca esta planilla.

@@ -23,7 +23,8 @@ Mientras `appsScriptUrl` esté vacía en `config.js`, el sitio funciona en modo 
 los formularios simulan el envío (no se guarda nada) y hay dos códigos de invitado ficticios
 para probar la personalización:
 
-- `?i=demo-k7p2q` → Familia Rodríguez, 4 lugares
+- `?i=demo-k7p2q` → Familia Rodríguez, 4 integrantes (pestañas)
+- `?i=demo-p3m8c` → Juan y acompañante (1 integrante + 1 acompañante sin nombre)
 - `?i=demo-x9wfa` → Sofía, 1 lugar
 
 ## Pendiente

@@ -281,6 +281,188 @@ select.campo__input {
   font-weight: 500;
 }
 
+/* Tarjetas seleccionables con ícono (bebidas, alimentación): el input queda oculto visualmente y la tarjeta es el control */
+.elecciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: var(--esp-3);
+}
+
+.eleccion {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-4) var(--esp-2);
+  border: 1px solid var(--color-salvia);
+  border-radius: var(--radio-lg);
+  background: var(--color-crema);
+  color: var(--color-oliva);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--transicion), background-color var(--transicion), color var(--transicion);
+}
+
+.eleccion__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.eleccion__nombre {
+  color: var(--color-texto);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+}
+
+/* Tilde en la esquina cuando está elegida */
+.eleccion::after {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--color-oliva)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fffdf8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E")
+    center / 0.8rem no-repeat;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--transicion), transform var(--transicion);
+}
+
+.eleccion:hover {
+  border-color: var(--color-oliva-claro);
+}
+
+.eleccion:has(.eleccion__input:checked) {
+  border-color: var(--color-oliva);
+  background: var(--color-oliva-tenue);
+  color: var(--color-oliva-oscuro);
+}
+
+.eleccion:has(.eleccion__input:checked)::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.eleccion:has(.eleccion__input:focus-visible) {
+  outline: 2px solid var(--color-oliva);
+  outline-offset: 3px;
+}
+
+.eleccion:has(.eleccion__input[aria-invalid='true']) {
+  border-color: var(--color-error);
+}
+
+/* Pestañas por invitado (RSVP y bebidas), con forma de pestañas del navegador */
+.pestanas {
+  display: grid;
+  min-width: 0;
+}
+
+.pestanas__barra {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--esp-2);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-salvia);
+  scrollbar-width: none;
+}
+
+.pestanas__lista {
+  display: flex;
+  gap: 3px;
+}
+
+.pestana {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 10rem;
+  margin-bottom: -1px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-salvia);
+  border-radius: var(--radio-lg) var(--radio-lg) 0 0;
+  background: var(--color-crema-oscuro);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.pestana:hover {
+  color: var(--color-oliva-oscuro);
+}
+
+/* La activa se funde con la tarjeta, como la pestaña abierta del navegador */
+.pestana[aria-selected='true'] {
+  z-index: 1;
+  border-bottom-color: var(--color-blanco);
+  background: var(--color-blanco);
+  color: var(--color-oliva-oscuro);
+}
+
+.pestana:focus-visible {
+  outline-offset: -4px;
+}
+
+.pestana__nombre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tilde cuando esa persona ya respondió */
+.pestana[data-completa]::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-oliva)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fffdf8' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E")
+    center / 0.65rem no-repeat;
+}
+
+.pestanas__sumar {
+  flex: 0 0 auto;
+  margin-bottom: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px dashed var(--color-oliva-claro);
+  border-radius: 999px;
+  background: none;
+  color: var(--color-oliva);
+  font-size: var(--texto-xs);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pestanas__panel {
+  display: grid;
+  gap: var(--esp-5);
+  padding-top: var(--esp-5);
+}
+
+.pestanas__barra[hidden] + .pestanas__paneles .pestanas__panel {
+  padding-top: 0;
+}
+
+.pestanas__quitar {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* Control de música (siempre visible tras entrar) */
 .musica {
   position: fixed;

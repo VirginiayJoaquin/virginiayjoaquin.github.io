@@ -37,7 +37,7 @@ export const config = {
       fin: '2027-02-14T05:00:00-03:00',
       lugar: 'AVA Experiencia Gourmet',
       direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
-      descripcion: 'La ceremonia empieza a las 19:00 en punto, al aire libre. Después seguimos con la fiesta en el salón.',
+      descripcion: 'Te esperamos a las 19:00. La ceremonia empieza a las 19:20 en punto, al aire libre, y después seguimos con la fiesta en el salón.',
       mapas: {
         google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
         waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
@@ -50,11 +50,22 @@ export const config = {
 
   rsvp: {
     fechaLimite: '2027-01-13T23:59:00-03:00',
-    // Cupo máximo que se ofrece cuando la persona entra sin código de invitado.
+    // Cupo máximo cuando la persona entra sin código de invitado (ella + acompañantes).
     lugaresSinCodigo: 2,
   },
 
-  // `id` es lo que se guarda en la planilla; `icono` es opcional (si falta, se usa el id;
+  // Opciones de alimentación del RSVP (se pueden marcar varias). `id` es lo que se guarda en la planilla;
+  // tienen que coincidir con ALIMENTACION_VALIDA en apps-script/Code.gs.
+  alimentacion: [
+    { id: 'vegetariano', nombre: 'Vegetariano/a' },
+    { id: 'vegano', nombre: 'Vegano/a' },
+    { id: 'celiaco', nombre: 'Celíaco/a' },
+    { id: 'sin-lactosa', nombre: 'Sin lactosa' },
+    { id: 'diabetico', nombre: 'Diabético/a' },
+  ],
+
+  // Cada persona elige una. `id` es lo que se guarda en la planilla (coincide con BEBIDAS_VALIDAS en Code.gs);
+  // `icono` es opcional (si falta, se usa el id;
   // si no hay ícono con ese nombre en bebidas.js, se muestra una copa genérica).
   bebidas: [
     { id: 'cerveza', nombre: 'Cerveza' },
