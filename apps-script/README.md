@@ -70,7 +70,7 @@ En la pestaña `Invitados`, una fila por invitación (persona o familia):
 - **Notas:** lo que quieras, el sitio no lo muestra.
 
 Después: **Invitación → Generar códigos y links**. Se completan el código y el link
-personal de cada uno (p. ej. `https://joacoherrera.github.io/invitacion/?i=rak76k`).
+personal de cada uno (p. ej. `https://virginiayjoaquin.github.io/?i=rak76k`).
 Ese link es el que le mandás a cada invitado.
 
 Podés agregar invitados en cualquier momento y volver a tocar **Generar códigos y links**:

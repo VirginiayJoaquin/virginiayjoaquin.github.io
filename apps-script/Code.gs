@@ -9,7 +9,7 @@
  * (Implementar → Gestionar implementaciones → editar), si no el sitio sigue usando la vieja.
  */
 
-const URL_INVITACION = 'https://joacoherrera.github.io/invitacion/';
+const URL_INVITACION = 'https://virginiayjoaquin.github.io/';
 
 // Tienen que coincidir con config.js (bebidas[].id, bebidasMaximo, alimentacion[].id y rsvp.lugaresSinCodigo).
 const BEBIDAS_VALIDAS = ['cerveza', 'fernet', 'whisky', 'aperol', 'gin', 'sin-alcohol'];
