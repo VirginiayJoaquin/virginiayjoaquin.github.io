@@ -284,7 +284,7 @@ select.campo__input {
 /* Tarjetas seleccionables con ícono (bebidas, alimentación): el input queda oculto visualmente y la tarjeta es el control */
 .elecciones {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(5.25rem, 1fr));
   gap: var(--esp-3);
 }
 
@@ -293,7 +293,7 @@ select.campo__input {
   display: grid;
   justify-items: center;
   gap: var(--esp-2);
-  padding: var(--esp-4) var(--esp-2);
+  padding: var(--esp-4) var(--esp-1);
   border: 1px solid var(--color-salvia);
   border-radius: var(--radio-lg);
   background: var(--color-crema);
@@ -311,7 +311,9 @@ select.campo__input {
 
 .eleccion__nombre {
   color: var(--color-texto);
-  font-size: var(--texto-sm);
+  font-size: var(--texto-xs);
+  text-align: center;
+  overflow-wrap: anywhere;
   font-weight: 500;
 }
 
@@ -551,98 +553,6 @@ select.campo__input {
 .aviso--visible {
   opacity: 1;
   transform: translate(-50%, 0);
-}
-
-/* Visor de fotos */
-.visor {
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  max-height: none;
-  padding: 0;
-  border: 0;
-  background: rgb(30 32 18 / 0.95);
-  color: var(--color-crema);
-}
-
-.visor[open] {
-  display: grid;
-  place-items: center;
-}
-
-.visor::backdrop {
-  background: rgb(30 32 18 / 0.6);
-}
-
-.visor__figura {
-  display: grid;
-  justify-items: center;
-  gap: var(--esp-3);
-  padding: 4.5rem var(--esp-4);
-}
-
-.visor__img {
-  width: auto;
-  max-width: 100%;
-  max-height: calc(100svh - 10rem);
-  border-radius: var(--radio);
-  object-fit: contain;
-}
-
-.visor__pie {
-  font-size: var(--texto-sm);
-  letter-spacing: 0.15em;
-}
-
-.visor__boton {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid var(--color-crema-transparente);
-  border-radius: 50%;
-  background: rgb(0 0 0 / 0.3);
-  color: var(--color-crema);
-}
-
-.visor__boton:focus-visible {
-  outline-color: var(--color-crema);
-}
-
-.visor__cerrar {
-  top: max(1rem, env(safe-area-inset-top));
-  right: 1rem;
-}
-
-.visor__anterior,
-.visor__siguiente {
-  bottom: max(1rem, env(safe-area-inset-bottom));
-}
-
-.visor__anterior {
-  left: calc(50% - 3.75rem);
-}
-
-.visor__siguiente {
-  right: calc(50% - 3.75rem);
-}
-
-@media (min-width: 48rem) {
-  .visor__anterior,
-  .visor__siguiente {
-    top: 50%;
-    bottom: auto;
-    translate: 0 -50%;
-  }
-
-  .visor__anterior {
-    left: 1.5rem;
-  }
-
-  .visor__siguiente {
-    right: 1.5rem;
-  }
 }
 
 @media (min-width: 30rem) {

@@ -60,8 +60,6 @@ export const config = {
     { id: 'vegetariano', nombre: 'Vegetariano/a' },
     { id: 'vegano', nombre: 'Vegano/a' },
     { id: 'celiaco', nombre: 'Celíaco/a' },
-    { id: 'sin-lactosa', nombre: 'Sin lactosa' },
-    { id: 'diabetico', nombre: 'Diabético/a' },
   ],
 
   // Cada persona elige hasta `bebidasMaximo`. `id` es lo que se guarda en la planilla (coincide con BEBIDAS_VALIDAS en Code.gs);
@@ -77,29 +75,16 @@ export const config = {
     { id: 'sin-alcohol', nombre: 'Sin alcohol' },
   ],
 
-  galeria: [
-    { src: './assets/img/galeria/foto-1.svg', alt: 'Foto de ejemplo 1' },
-    { src: './assets/img/galeria/foto-2.svg', alt: 'Foto de ejemplo 2' },
-    { src: './assets/img/galeria/foto-3.svg', alt: 'Foto de ejemplo 3' },
-    { src: './assets/img/galeria/foto-4.svg', alt: 'Foto de ejemplo 4' },
-    { src: './assets/img/galeria/foto-5.svg', alt: 'Foto de ejemplo 5' },
-    { src: './assets/img/galeria/foto-6.svg', alt: 'Foto de ejemplo 6' },
-  ],
-
+  // Por ahora solo se informa el tipo de vestimenta. `descripcion`, `nota` y `colores` son opcionales
+  // (colores: [{ nombre: 'Verde oliva', valor: '#6b7240' }, ...] muestra una paleta sugerida).
   dressCode: {
-    // false = la sección no se muestra (los datos quedan guardados para cuando se defina).
-    mostrar: false,
-    tipo: 'Elegante sport',
-    descripcion: 'Vení cómodo y elegante.',
-    nota: 'Te sugerimos tonos tierra y verdes. El blanco, para la novia.',
-    colores: [
-      { nombre: 'Verde oliva', valor: '#6b7240' },
-      { nombre: 'Salvia', valor: '#b7bd98' },
-      { nombre: 'Arena', valor: '#d9c7a3' },
-      { nombre: 'Terracota', valor: '#b0694a' },
-      { nombre: 'Marrón', valor: '#6d5240' },
-    ],
+    mostrar: true,
+    tipo: 'Formal',
+    descripcion: '',
+    nota: '',
+    colores: [],
   },
+
 
   tips: [
     {

@@ -5,7 +5,6 @@ import { initGuest } from './guest.js';
 import { initRsvp } from './rsvp.js';
 import { initBebidas } from './bebidas.js';
 import { initSongs } from './songs.js';
-import { initGallery } from './gallery.js';
 import { initGifts } from './gifts.js';
 
 document.documentElement.classList.add('js');
@@ -13,7 +12,6 @@ document.documentElement.classList.add('js');
 renderContenido();
 initIntro();
 initCountdown();
-initGallery();
 initGifts();
 
 // La consulta del invitado no bloquea el resto: los formularios se completan cuando llega.

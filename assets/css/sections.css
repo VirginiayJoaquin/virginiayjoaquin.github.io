@@ -304,51 +304,7 @@
   color: var(--color-texto-suave);
 }
 
-/* 8. Galería */
-.galeria__grilla {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--esp-2);
-  margin-top: var(--esp-7);
-}
-
-.galeria__item:nth-child(3n + 1) {
-  grid-column: span 2;
-}
-
-.galeria__boton {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  border-radius: var(--radio);
-  background: var(--color-salvia);
-}
-
-.galeria__item:nth-child(3n + 1) .galeria__boton {
-  aspect-ratio: 16 / 10;
-}
-
-.galeria__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.galeria__boton:hover .galeria__img {
-  transform: scale(1.04);
-}
-
-/* 9. Canciones: la tarjeta del formulario mantiene fondo claro sobre la sección oliva */
-.canciones .formulario {
-  max-width: 30rem;
-  margin-inline: auto;
-}
-
-/* 10. Dress code */
+/* 8. Dress code */
 .dresscode__tipo {
   margin-top: var(--esp-5);
   color: var(--color-oliva-oscuro);
@@ -385,6 +341,12 @@
   color: var(--color-texto-suave);
   font-size: var(--texto-sm);
   font-style: italic;
+}
+
+/* 9. Canciones: la tarjeta del formulario mantiene fondo claro sobre la sección oliva */
+.canciones .formulario {
+  max-width: 30rem;
+  margin-inline: auto;
 }
 
 /* 11. Tips */
@@ -514,27 +476,5 @@
 
   .regalos__datos {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .galeria__grilla {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .galeria__item:nth-child(3n + 1) {
-    grid-column: auto;
-  }
-
-  .galeria__item:nth-child(3n + 1) .galeria__boton {
-    aspect-ratio: 1;
-  }
-
-  .galeria__item:nth-child(6n + 1) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .galeria__item:nth-child(6n + 1) .galeria__boton {
-    aspect-ratio: auto;
-    height: 100%;
   }
 }

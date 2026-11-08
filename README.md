@@ -32,4 +32,4 @@ para probar la personalización:
 
 - Conectar el backend: seguir `apps-script/README.md` y poner la URL en `appsScriptUrl`.
 - PWA (manifest, service worker, íconos).
-- Fotos reales (WebP) en `assets/img/galeria/` y música en `assets/audio/cancion.mp3`.
+- Música en `assets/audio/cancion.mp3`.

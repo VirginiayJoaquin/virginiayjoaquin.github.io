@@ -11,8 +11,6 @@ const ICONOS = {
   celiaco: trazo(
     '<path d="M12 21V8"/><path d="M12 8c-2-1-3-3-3-5 2 1 3 3 3 5zm0 0c2-1 3-3 3-5-2 1-3 3-3 5z"/><path d="M12 14c-2-1-3-3-3-5 2 1 3 3 3 5zm0 0c2-1 3-3 3-5-2 1-3 3-3 5z"/><path d="m4 4 16 16"/>',
   ),
-  'sin-lactosa': trazo('<path d="M8 8.5 9.5 4h5L16 8.5V20H8z"/><path d="M8 8.5h8"/><path d="m4 4 16 16"/>'),
-  diabetico: trazo('<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9.5 14.5A2.5 2.5 0 0 0 12 17"/>'),
 };
 const ICONO_GENERICO = trazo('<path d="M7 3v18M4.5 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M17 21V3c-2 1.5-3 4-3 7v3h3"/>');
 
@@ -37,8 +35,8 @@ export function initRsvp(promesaInvitado) {
       </fieldset>
       <div class="formulario__grupo" data-si hidden>
         <fieldset class="campo" aria-describedby="rsvp-alimentacion-${p.uid}-ayuda">
-          <legend class="campo__label">Alimentación <span class="campo__opcional">(opcional)</span></legend>
-          <p class="campo__ayuda" id="rsvp-alimentacion-${p.uid}-ayuda">Marcá lo que corresponda, podés elegir más de una.</p>
+          <legend class="campo__label">${segun(p, '¿Necesitás un menú especial?', (n) => `¿${n} necesita un menú especial?`)}</legend>
+          <p class="campo__ayuda" id="rsvp-alimentacion-${p.uid}-ayuda">Marcalo solo si corresponde. Podés elegir más de una.</p>
           <div class="elecciones">
             ${tarjetasOpcion({ tipo: 'checkbox', name: `alimentacion-${p.uid}`, opciones: config.alimentacion, iconos: ICONOS, iconoGenerico: ICONO_GENERICO })}
           </div>

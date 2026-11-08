@@ -31,13 +31,12 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
    y botón **Cómo llegar** (link a Google Maps / Waze).
 6. **Confirmar asistencia (RSVP):** formulario que envía a Google Sheets vía Apps Script.
 7. **Elegí tus bebidas:** multiselección de bebidas (opciones en `config.js`) que envía a Google Sheets vía Apps Script.
-8. **Galería** de fotos.
+8. **Dress code** (por ahora solo "Formal"; se va a detallar más adelante).
 9. **Sugerir canción:** formulario que envía a Google Sheets vía Apps Script.
-10. **Dress code** (oculto por ahora: `dressCode.mostrar = false` en `config.js`).
-11. **Tips** (alojamiento, estacionamiento, horarios, etc.).
-12. **Regalos** (datos bancarios / lista; botón para copiar al portapapeles).
+10. **Tips** (estacionamiento, horarios, etc.).
+11. **Regalos** (datos bancarios / lista; botón para copiar al portapapeles).
 
-No hay sección de redes ni hashtag (se decidió quitarla).
+No hay sección de redes ni hashtag, ni galería de fotos (se decidió quitarlas).
 
 ## Decisiones técnicas
 
@@ -58,7 +57,7 @@ No hay sección de redes ni hashtag (se decidió quitarla).
 - **Service worker:** cache-first para assets estáticos, network-only para llamadas al Apps Script.
   Versionar el nombre del cache (`CACHE_VERSION`) y subirlo en cada deploy que cambie assets.
   El `sw.js` va en la raíz para que su scope cubra todo el sitio.
-- **Rendimiento:** imágenes en WebP/AVIF con tamaños adecuados, `loading="lazy"` en la galería,
+- **Rendimiento:** imágenes en WebP/AVIF con tamaños adecuados,
   audio comprimido (MP3/AAC ~128 kbps), fuentes locales con `font-display: swap`.
 - **Accesibilidad:** HTML semántico, `alt` en imágenes, contraste suficiente,
   respetar `prefers-reduced-motion`, foco visible, formularios con `<label>`.
@@ -100,14 +99,14 @@ No hay sección de redes ni hashtag (se decidió quitarla).
 │   │   ├── calendar.js      # Links de Google Calendar / descarga .ics
 │   │   ├── rsvp.js          # Formulario de confirmación
 │   │   ├── bebidas.js       # Formulario de elección de bebidas
+│   │   ├── personas.js      # Pestañas por invitado (RSVP y bebidas)
+│   │   ├── opciones.js      # Tarjetas seleccionables con ícono
 │   │   ├── songs.js         # Formulario de sugerencia de canción
-│   │   ├── gallery.js       # Galería / visor de fotos
 │   │   ├── gifts.js         # Copiar datos de regalos al portapapeles
 │   │   └── pwa.js           # Registro del service worker
 │   │
 │   ├── img/
 │   │   ├── portada/         # Imagen(es) de la portada
-│   │   ├── galeria/         # Fotos de la galería (WebP)
 │   │   ├── decor/           # Ornamentos, ilustraciones, íconos SVG
 │   │   └── icons/           # Íconos de la PWA (192, 512, maskable, apple-touch)
 │   │

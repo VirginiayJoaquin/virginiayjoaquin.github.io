@@ -14,7 +14,7 @@ const URL_INVITACION = 'https://joacoherrera.github.io/invitacion/';
 // Tienen que coincidir con config.js (bebidas[].id, bebidasMaximo, alimentacion[].id y rsvp.lugaresSinCodigo).
 const BEBIDAS_VALIDAS = ['cerveza', 'fernet', 'whisky', 'aperol', 'gin', 'sin-alcohol'];
 const BEBIDAS_MAXIMO = 2;
-const ALIMENTACION_VALIDA = ['vegetariano', 'vegano', 'celiaco', 'sin-lactosa', 'diabetico'];
+const ALIMENTACION_VALIDA = ['vegetariano', 'vegano', 'celiaco'];
 const LUGARES_SIN_CODIGO = 2;
 
 const HOJAS = {

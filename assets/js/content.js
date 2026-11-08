@@ -88,7 +88,7 @@ function renderDressCode() {
   }
   document.querySelector('[data-dresscode]').innerHTML = `
     <p class="dresscode__tipo">${esc(tipo)}</p>
-    <p class="dresscode__descripcion">${esc(descripcion)}</p>
+    ${descripcion ? `<p class="dresscode__descripcion">${esc(descripcion)}</p>` : ''}
     ${
       colores?.length
         ? `<ul class="dresscode__colores" aria-label="Paleta sugerida">
