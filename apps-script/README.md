@@ -32,7 +32,7 @@ Las crea el script (menú **Invitación → Preparar planilla**):
 ### 1. Crear la planilla
 
 1. Entrá a <https://sheets.new> con tu cuenta personal.
-2. Arriba a la izquierda, ponele un nombre, por ejemplo *Casamiento Vicka y Joaco*.
+2. Arriba a la izquierda, ponele un nombre, por ejemplo *Casamiento Virginia y Joaquín*.
 
 ### 2. Pegar el script
 

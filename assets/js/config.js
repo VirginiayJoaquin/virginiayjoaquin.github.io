@@ -6,8 +6,8 @@
 
 export const config = {
   novios: {
-    nombre1: 'Vicka',
-    nombre2: 'Joaco',
+    nombre1: 'Virginia',
+    nombre2: 'Joaquín',
   },
 
   // Fecha y hora a la que apunta la cuenta regresiva (normalmente, el inicio de la ceremonia).
@@ -84,18 +84,6 @@ export const config = {
     nota: '',
     colores: [],
   },
-
-
-  tips: [
-    {
-      titulo: 'Ceremonia al aire libre',
-      texto: 'La ceremonia es afuera, frente a la rambla: traé algo liviano por si se levanta viento. Después seguimos en el salón.',
-    },
-    {
-      titulo: 'Traslado',
-      texto: 'Si brindás, no manejes: coordiná con alguien o pedí un taxi para la vuelta.',
-    },
-  ],
 
   regalos: {
     texto: 'Lo más importante es que nos acompañes. Si además querés hacernos un regalo, te dejamos nuestros datos.',

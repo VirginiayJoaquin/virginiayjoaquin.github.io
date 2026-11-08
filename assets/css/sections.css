@@ -349,39 +349,6 @@
   margin-inline: auto;
 }
 
-/* 11. Tips */
-.tips {
-  display: grid;
-  gap: var(--esp-4);
-  margin-top: var(--esp-7);
-  text-align: left;
-}
-
-.tip {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--esp-1) var(--esp-4);
-  padding: var(--esp-5);
-}
-
-.tip::before {
-  content: '';
-  grid-row: span 2;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  background: var(--color-oliva-tenue) url('../img/decor/hoja.svg') center / 1.25rem no-repeat;
-}
-
-.tip__titulo {
-  font-size: 1.5rem;
-}
-
-.tip__texto {
-  color: var(--color-texto-suave);
-  font-size: var(--texto-sm);
-}
-
 /* 12. Regalos */
 .regalos__toggle {
   margin-top: var(--esp-6);
@@ -468,10 +435,6 @@
   .eventos {
     grid-template-columns: repeat(auto-fit, minmax(0, 26rem));
     justify-content: center;
-  }
-
-  .tips {
-    grid-template-columns: 1fr 1fr;
   }
 
   .regalos__datos {

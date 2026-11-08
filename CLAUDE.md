@@ -29,20 +29,19 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
    y cantidad de lugares asignados. Sin código o con código inválido → invitación genérica, nunca un error.
 5. **Ceremonia y fiesta:** lugar, hora, dirección, botón **Agendar** (Google Calendar + archivo `.ics`)
    y botón **Cómo llegar** (link a Google Maps / Waze).
-6. **Confirmar asistencia (RSVP):** formulario que envía a Google Sheets vía Apps Script.
-7. **Elegí tus bebidas:** multiselección de bebidas (opciones en `config.js`) que envía a Google Sheets vía Apps Script.
-8. **Dress code** (por ahora solo "Formal"; se va a detallar más adelante).
+6. **Dress code** (por ahora solo "Formal"; se va a detallar más adelante).
+7. **Confirmar asistencia (RSVP):** formulario que envía a Google Sheets vía Apps Script.
+8. **Elegí tus bebidas:** multiselección de bebidas (opciones en `config.js`) que envía a Google Sheets vía Apps Script.
 9. **Sugerir canción:** formulario que envía a Google Sheets vía Apps Script.
-10. **Tips** (estacionamiento, horarios, etc.).
-11. **Regalos** (datos bancarios / lista; botón para copiar al portapapeles).
+10. **Regalos** (datos bancarios / lista; botón para copiar al portapapeles).
 
-No hay sección de redes ni hashtag, ni galería de fotos (se decidió quitarlas).
+No hay sección de redes ni hashtag, ni galería de fotos, ni datos útiles/tips (se decidió quitarlas).
 
 ## Decisiones técnicas
 
 - **Todo el contenido editable vive en `assets/js/config.js`:** nombres, fecha/hora (con zona horaria
   `America/Montevideo`), lugares, direcciones, links de mapas, URL del Apps Script, datos de regalos,
-  redes, textos de tips y dress code. Cambiar datos no debería requerir tocar HTML ni lógica.
+  redes y dress code. Cambiar datos no debería requerir tocar HTML ni lógica.
 - **JS con ES modules nativos** (`<script type="module">`), un módulo por funcionalidad.
 - **Rutas relativas siempre** (`./assets/...`), porque GitHub Pages sirve el sitio bajo
   `/<nombre-repo>/`. Esto aplica también al `manifest` y al service worker.

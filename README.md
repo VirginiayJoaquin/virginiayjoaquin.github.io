@@ -15,7 +15,7 @@ y abrir <http://localhost:8000>.
 
 ## Editar los datos
 
-Todo el contenido (nombres, fechas, lugares, regalos, tips, etc.) está en `assets/js/config.js`.
+Todo el contenido (nombres, fechas, lugares, regalos, etc.) está en `assets/js/config.js`.
 
 ## Modo demo
 

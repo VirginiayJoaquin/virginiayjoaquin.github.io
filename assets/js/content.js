@@ -104,22 +104,9 @@ function renderDressCode() {
     ${nota ? `<p class="dresscode__nota">${esc(nota)}</p>` : ''}`;
 }
 
-function renderTips() {
-  document.querySelector('[data-tips]').innerHTML = config.tips
-    .map(
-      (tip) => `
-      <li class="tip tarjeta revelar">
-        <h3 class="tip__titulo">${esc(tip.titulo)}</h3>
-        <p class="tip__texto">${esc(tip.texto)}</p>
-      </li>`,
-    )
-    .join('');
-}
-
 export function renderContenido() {
   renderTextos();
   renderEventos();
   initDesplegables();
   renderDressCode();
-  renderTips();
 }
