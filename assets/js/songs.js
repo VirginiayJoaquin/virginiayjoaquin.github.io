@@ -6,16 +6,15 @@ export function initSongs(promesaInvitado) {
   let invitado = null;
 
   promesaInvitado.then((datos) => {
-    if (!datos) return;
     invitado = datos;
-    if (!form.elements.nombre.value) form.elements.nombre.value = datos.nombre;
   });
 
   form.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     limpiarErrores(form);
     const f = form.elements;
-    const datos = { nombre: f.nombre.value.trim(), cancion: f.cancion.value.trim(), artista: f.artista.value.trim() };
+    // El nombre sale del link personal; sin código queda vacío.
+    const datos = { nombre: invitado?.nombre ?? '', cancion: f.cancion.value.trim(), artista: f.artista.value.trim() };
 
     if (datos.cancion.length < 2) {
       mostrarError(form, 'cancion', '¿Qué canción no puede faltar?');

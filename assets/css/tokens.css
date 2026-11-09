@@ -1,4 +1,4 @@
-/* Tipografías locales (subset latino: cubre tildes, ñ, ¡ y ¿). Ambas son fuentes variables. */
+/* Tipografías locales (subset latino: cubre tildes, ñ, ¡ y ¿). Cormorant y Jost son fuentes variables. */
 @font-face {
   font-family: 'Cormorant Garamond';
   src: url('../fonts/cormorant-garamond.woff2') format('woff2');
@@ -23,6 +23,15 @@
   font-display: swap;
 }
 
+/* Caligráfica del monograma J&V (la misma línea que el save the date). */
+@font-face {
+  font-family: 'Parisienne';
+  src: url('../fonts/parisienne.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Colores */
   --color-crema: #f7f2e8;
@@ -42,6 +51,7 @@
 
   /* Tipografía */
   --fuente-titulos: 'Cormorant Garamond', 'Garamond', 'Times New Roman', serif;
+  --fuente-script: 'Parisienne', 'Cormorant Garamond', cursive;
   --fuente-texto: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --texto-xs: 0.8125rem;

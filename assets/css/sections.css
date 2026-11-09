@@ -44,9 +44,11 @@
   height: 5.5rem;
   border: 1px solid var(--color-crema-transparente);
   border-radius: 50%;
-  font-family: var(--fuente-titulos);
-  font-size: 1.75rem;
-  font-style: italic;
+  font-family: var(--fuente-script);
+  font-size: 1.85rem;
+  line-height: 1;
+  white-space: nowrap;
+  word-spacing: -0.15em;
 }
 
 .intro__titulo {
@@ -115,12 +117,16 @@
 }
 
 .portada__y {
-  font-size: 0.55em;
-  color: var(--color-dorado);
+  font-family: var(--fuente-script);
+  font-size: 1em;
+  font-style: normal;
+  line-height: 1;
+  color: var(--color-oliva);
 }
 
 .portada__rama {
-  width: min(14rem, 75%);
+  width: min(15rem, 80%);
+  height: auto;
 }
 
 .portada__fecha {

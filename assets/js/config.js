@@ -6,8 +6,8 @@
 
 export const config = {
   novios: {
-    nombre1: 'Virginia',
-    nombre2: 'Joaquín',
+    nombre1: 'Joaquín',
+    nombre2: 'Virginia',
   },
 
   // Fecha y hora a la que apunta la cuenta regresiva (normalmente, el inicio de la ceremonia).
