@@ -32,4 +32,4 @@ para probar la personalización:
 
 - Conectar el backend: seguir `apps-script/README.md` y poner la URL en `appsScriptUrl`.
 - PWA (manifest, service worker, íconos).
-- Música en `assets/audio/cancion.mp3`.
+- Música en `assets/audio/joaquin.mp3` y `assets/audio/virginia.mp3` (cada invitado elige una al entrar; se configuran en `config.musica`).

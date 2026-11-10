@@ -6,16 +6,22 @@
 
 export const config = {
   novios: {
-    nombre1: 'Joaquín',
-    nombre2: 'Virginia',
+    nombre1: 'Virginia',
+    nombre2: 'Joaquín',
   },
 
   // Fecha y hora a la que apunta la cuenta regresiva (normalmente, el inicio de la ceremonia).
   fecha: '2027-02-13T19:00:00-03:00',
   zonaHoraria: 'America/Montevideo',
 
+  // Cada invitado elige con qué música entra (o sin música). Un botón por opción, en este orden.
+  // Si falta el archivo, la invitación funciona igual y el botón de pausa no aparece.
   musica: {
-    src: './assets/audio/cancion.mp3',
+    pregunta: '¿Con qué música entrás?',
+    opciones: [
+      { nombre: 'Joaquín', src: './assets/audio/joaquin.mp3' },
+      { nombre: 'Virginia', src: './assets/audio/virginia.mp3' },
+    ],
   },
 
   textos: {
@@ -32,12 +38,12 @@ export const config = {
   eventos: [
     {
       id: 'casamiento',
-      titulo: 'Ceremonia y fiesta',
+      titulo: 'Ceremonia & Fiesta',
       inicio: '2027-02-13T19:00:00-03:00',
       fin: '2027-02-14T05:00:00-03:00',
       lugar: 'AVA Experiencia Gourmet',
       direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
-      descripcion: 'Te esperamos a las 19:00. La ceremonia empieza a las 19:20 en punto, al aire libre, y después seguimos con la fiesta en el salón.',
+      descripcion: 'Te esperamos a las 19:00h. La ceremonia dará comienzo puntualmente a las 19:20h, al aire libre. Luego, continuaremos la fiesta en el salón.',
       mapas: {
         google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
         waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
@@ -86,21 +92,14 @@ export const config = {
   },
 
   regalos: {
-    texto: 'Lo más importante es que nos acompañes. Si además querés hacernos un regalo, te dejamos nuestros datos.',
+    texto: 'Nuestro mejor regalo es compartir este día tan especial con vos. Pero si además querés hacernos un presente, te dejamos nuestros datos.',
     cuentas: [
       {
-        banco: 'BROU',
-        moneda: 'Pesos uruguayos',
+        banco: 'Itaú',
+        moneda: 'Dólares (USD)',
         tipo: 'Caja de ahorro',
-        titular: 'Nombre del titular',
-        numero: '001234567-00001',
-      },
-      {
-        banco: 'BROU',
-        moneda: 'Dólares',
-        tipo: 'Caja de ahorro',
-        titular: 'Nombre del titular',
-        numero: '001234567-00002',
+        titular: 'Virginia Cabral Liard',
+        numero: '2615037',
       },
     ],
   },

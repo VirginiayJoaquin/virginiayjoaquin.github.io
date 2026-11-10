@@ -1,16 +1,14 @@
-/* Pantalla de entrada */
+/* Pantalla de entrada: la imagen de portada (ya trae nombres y fecha) y los botones para entrar */
 .intro {
   position: fixed;
   inset: 0;
   z-index: 100;
   display: grid;
   place-items: center;
-  padding: var(--esp-5);
+  padding: var(--esp-4);
   overflow-y: auto;
-  background:
-    radial-gradient(circle at 50% 25%, rgb(255 255 255 / 0.08), transparent 60%),
-    var(--color-oliva-oscuro);
-  color: var(--color-crema);
+  background: #f6f1e7; /* el mismo crema que el fondo de la imagen, para que no se note el borde */
+  color: var(--color-oliva-oscuro);
   text-align: center;
   transition: opacity 0.9s ease, visibility 0.9s;
 }
@@ -23,46 +21,38 @@
 .intro__marco {
   display: grid;
   justify-items: center;
-  gap: var(--esp-4);
+  gap: var(--esp-3);
   width: 100%;
-  max-width: 24rem;
-  padding: var(--esp-8) var(--esp-5) var(--esp-6);
-  border: 1px solid var(--color-crema-transparente);
-  border-radius: var(--radio-arco);
+  max-width: 26rem;
 }
 
-.intro__antetitulo {
-  font-size: var(--texto-xs);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+/* Alta como para que los botones entren en la misma pantalla del celular. */
+.intro__imagen {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100svh - 13rem);
+  margin-bottom: var(--esp-2);
 }
 
-.intro__monograma {
-  display: grid;
-  place-items: center;
-  width: 5.5rem;
-  height: 5.5rem;
-  border: 1px solid var(--color-crema-transparente);
-  border-radius: 50%;
-  font-family: var(--fuente-script);
-  font-size: 1.85rem;
-  line-height: 1;
-  white-space: nowrap;
-  word-spacing: -0.15em;
-}
-
-.intro__titulo {
+.intro__pregunta {
   font-family: var(--fuente-titulos);
-  font-size: clamp(2.5rem, 12vw, 3.5rem);
+  font-size: var(--texto-xl);
   font-style: italic;
-  line-height: 1.05;
-  text-wrap: balance;
+  line-height: 1.1;
 }
 
-.intro__fecha {
-  margin-bottom: var(--esp-4);
-  font-size: var(--texto-sm);
-  letter-spacing: 0.25em;
+/* Las opciones van lado a lado para que entren junto con la imagen en la pantalla del celular. */
+.intro__opciones {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: var(--esp-3);
+  width: 100%;
+  max-width: 22rem;
+}
+
+.intro__opciones .boton {
+  padding-inline: var(--esp-3);
 }
 
 .intro__sin-musica {
@@ -75,7 +65,7 @@
 }
 
 .intro :focus-visible {
-  outline-color: var(--color-crema);
+  outline-color: var(--color-oliva);
 }
 
 /* 1. Portada */
@@ -110,10 +100,11 @@
 
 .portada__nombres {
   display: grid;
+  font-family: var(--fuente-script);
   font-size: var(--texto-3xl);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 1.05;
 }
 
 .portada__y {
@@ -234,10 +225,13 @@
 }
 
 /* 5. Ceremonia y fiesta */
+.eventos-seccion {
+  padding-top: var(--esp-7);
+}
+
 .eventos {
   display: grid;
   gap: var(--esp-6);
-  margin-top: var(--esp-7);
 }
 
 .evento {
@@ -418,10 +412,12 @@
   opacity: 0.85;
 }
 
+/* Misma caligráfica que la portada: el & itálico de Cormorant tiene forma de "Et". */
 .pie__nombres {
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente-script);
   font-size: var(--texto-2xl);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .pie__fecha {

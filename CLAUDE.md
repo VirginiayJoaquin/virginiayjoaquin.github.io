@@ -21,7 +21,9 @@ Es inspiración visual y de estructura: no copiar textos, imágenes ni código d
 ## Secciones (en orden de aparición)
 
 1. **Portada:** nombres de los novios y fecha.
-2. **Botón "Ingresar con música":** pantalla de entrada; al tocarlo arranca la música y se revela la invitación.
+2. **Pantalla de entrada:** la imagen de portada (`assets/img/portada/portada.jpg`, ya trae nombres y fecha)
+   y "¿Con qué música entrás?": un botón por cada música (`config.musica.opciones`: la de Joaquín y la de Virginia)
+   y "Entrar sin música". Al elegir arranca esa música y se revela la invitación.
    (Los navegadores bloquean el autoplay con sonido: la música solo puede arrancar tras un gesto del usuario.)
    Debe haber un control para pausar/reanudar la música visible en todo momento.
 3. **Cuenta regresiva** a la fecha del casamiento.
@@ -92,7 +94,7 @@ No hay sección de redes ni hashtag, ni galería de fotos, ni datos útiles/tips
 │   │   ├── config.js        # TODOS los datos editables del casamiento
 │   │   ├── main.js          # Punto de entrada: inicializa los módulos
 │   │   ├── api.js           # Comunicación con Apps Script (GET/POST)
-│   │   ├── intro.js         # Pantalla "Ingresar con música" + control de audio
+│   │   ├── intro.js         # Pantalla de entrada (elegir música) + control de audio
 │   │   ├── countdown.js     # Cuenta regresiva
 │   │   ├── guest.js         # Lectura de ?i=codigo y personalización
 │   │   ├── calendar.js      # Links de Google Calendar / descarga .ics
@@ -110,7 +112,8 @@ No hay sección de redes ni hashtag, ni galería de fotos, ni datos útiles/tips
 │   │   └── icons/           # Íconos de la PWA (192, 512, maskable, apple-touch)
 │   │
 │   ├── audio/
-│   │   └── cancion.mp3      # Música de fondo
+│   │   ├── joaquin.mp3      # Música de Joaquín
+│   │   └── virginia.mp3     # Música de Virginia
 │   │
 │   ├── fonts/               # Tipografías locales (woff2)
 │   │

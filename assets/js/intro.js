@@ -1,4 +1,5 @@
 import { config } from './config.js';
+import { esc } from './utils.js';
 
 const reducirMovimiento = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -8,7 +9,9 @@ export function initIntro() {
   const audio = document.getElementById('musica');
   const toggle = document.getElementById('musica-toggle');
 
-  audio.src = config.musica.src;
+  const { pregunta, opciones } = config.musica;
+  // Si entran sin música y después tocan el botón de la nota, suena la primera opción.
+  audio.src = opciones[0].src;
   contenido.inert = true;
   document.body.classList.add('is-bloqueado');
 
@@ -26,7 +29,7 @@ export function initIntro() {
   audio.addEventListener('error', () => {
     // Sin archivo de audio no tiene sentido mostrar el control.
     toggle.hidden = true;
-    console.warn(`No se pudo cargar la música (${config.musica.src}).`);
+    console.warn(`No se pudo cargar la música (${audio.src}).`);
   });
 
   toggle.addEventListener('click', () => (audio.paused ? reproducir() : audio.pause()));
@@ -62,7 +65,17 @@ export function initIntro() {
     document.getElementById('inicio').focus({ preventScroll: true });
   };
 
-  intro.querySelector('[data-intro-musica]').addEventListener('click', () => entrar(true));
+  intro.querySelector('[data-intro-pregunta]').textContent = pregunta;
+  const botones = intro.querySelector('[data-intro-opciones]');
+  botones.innerHTML = opciones
+    .map((opcion, i) => `<button class="boton" type="button" data-intro-musica="${i}">${esc(opcion.nombre)}</button>`)
+    .join('');
+  botones.addEventListener('click', (evento) => {
+    const boton = evento.target.closest('[data-intro-musica]');
+    if (!boton) return;
+    audio.src = opciones[boton.dataset.introMusica].src;
+    entrar(true);
+  });
   intro.querySelector('[data-intro-silencio]').addEventListener('click', () => entrar(false));
-  intro.querySelector('[data-intro-musica]').focus();
+  botones.querySelector('button')?.focus();
 }

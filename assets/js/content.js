@@ -9,7 +9,6 @@ function renderTextos() {
     novio1: novios.nombre1,
     novio2: novios.nombre2,
     nombres: nombresNovios(),
-    iniciales: `${novios.nombre1[0]} & ${novios.nombre2[0]}`,
     fechaLarga: fechaLarga(fecha),
     fechaCorta: fechaCorta(fecha),
     rsvpLimite: diaYMes(rsvp.fechaLimite),

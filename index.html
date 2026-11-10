@@ -10,6 +10,16 @@
 
     <link rel="preload" href="./assets/fonts/cormorant-garamond-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/jost.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/parisienne.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/img/portada/portada.jpg" as="image">
+
+    <!-- Vista previa al compartir el link (WhatsApp, etc.): la URL de la imagen tiene que ser absoluta. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Virginia &amp; Joaquín · Nos casamos">
+    <meta property="og:description" content="13.02.2027 · Te esperamos para celebrar juntos.">
+    <meta property="og:image" content="https://virginiayjoaquin.github.io/assets/img/portada/portada.jpg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1536">
     <link rel="stylesheet" href="./assets/css/tokens.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/components.css">
@@ -23,12 +33,14 @@
     <!-- Pantalla de entrada: la música solo puede arrancar tras un gesto del usuario -->
     <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-titulo">
       <div class="intro__marco">
-        <p class="intro__antetitulo">Nuestro casamiento</p>
-        <p class="intro__monograma" aria-hidden="true" data-texto="iniciales"></p>
-        <p class="intro__titulo" id="intro-titulo" data-texto="nombres"></p>
-        <p class="intro__fecha" data-texto="fechaCorta"></p>
-        <button class="boton boton--claro" type="button" data-intro-musica>Ingresar con música</button>
-        <button class="intro__sin-musica" type="button" data-intro-silencio>Ingresar sin música</button>
+        <!-- La imagen ya trae los nombres y la fecha: el texto queda solo para lectores de pantalla -->
+        <p class="visualmente-oculto" id="intro-titulo" data-texto="nombres"></p>
+        <p class="visualmente-oculto" data-texto="fechaCorta"></p>
+        <img class="intro__imagen" src="./assets/img/portada/portada.jpg" alt="" width="1024" height="1536" fetchpriority="high">
+        <p class="intro__pregunta" id="intro-pregunta" data-intro-pregunta></p>
+        <!-- Un botón por música (config.musica.opciones): lo arma intro.js -->
+        <div class="intro__opciones" role="group" aria-labelledby="intro-pregunta" data-intro-opciones></div>
+        <button class="intro__sin-musica" type="button" data-intro-silencio>Entrar sin música</button>
       </div>
     </div>
 
@@ -82,9 +94,8 @@
       </section>
 
       <!-- 5. Ceremonia y fiesta -->
-      <section class="seccion eventos-seccion" id="eventos" aria-labelledby="eventos-titulo">
+      <section class="seccion eventos-seccion" id="eventos" aria-label="Ceremonia y fiesta">
         <div class="contenedor contenedor--ancho">
-          <h2 class="titulo-seccion revelar" id="eventos-titulo">Cuándo y dónde</h2>
           <div class="eventos" data-eventos></div>
         </div>
       </section>
