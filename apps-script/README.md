@@ -12,7 +12,7 @@ Las crea el script (menú **Invitación → Preparar planilla**):
 
 | Pestaña     | Columnas                                                          | Quién la llena |
 |-------------|-------------------------------------------------------------------|----------------|
-| `Invitados` | Código · Nombre a mostrar · Integrantes · Lugares · Notas · Link | Vos |
+| `Invitados` | Código · Nombre a mostrar · Integrantes · Lugares · Notas · Link · Tipo | Vos |
 | `RSVP`      | Fecha · Código · Invitación · Nombre · Asiste · Alimentación · Otra indicación · Mensaje | El sitio |
 | `Bebidas`   | Fecha · Código · Nombre · Bebidas | El sitio |
 | `Canciones` | Fecha · Código · Nombre · Canción · Artista                       | El sitio       |
@@ -68,6 +68,9 @@ En la pestaña `Invitados`, una fila por invitación (persona o familia):
   acompañantes sin nombre: p. ej. Integrantes *Juan Silva* y Lugares *2* → pestañas
   "Juan Silva" y "Acompañante", donde completan el nombre.
 - **Notas:** lo que quieras, el sitio no lo muestra.
+- **Tipo:** vacío para la invitación completa. Poné `fiesta` para quienes van solo a la fiesta:
+  ven solo la tarjeta de la fiesta (con su horario), la cuenta regresiva hasta esa hora y la
+  confirmación sin elección de menú.
 
 Después: **Invitación → Generar códigos y links**. Se completan el código y el link
 personal de cada uno (p. ej. `https://virginiayjoaquin.github.io/?i=rak76k`).

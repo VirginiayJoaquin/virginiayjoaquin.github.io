@@ -1,4 +1,5 @@
-import { renderContenido } from './content.js';
+import { renderContenido, mostrarEventos } from './content.js';
+import { eventosDe } from './utils.js';
 import { initIntro } from './intro.js';
 import { initCountdown } from './countdown.js';
 import { initGuest } from './guest.js';
@@ -11,7 +12,7 @@ document.documentElement.classList.add('js');
 
 renderContenido();
 initIntro();
-initCountdown();
+const cuenta = initCountdown();
 initGifts();
 
 // La consulta del invitado no bloquea el resto: los formularios se completan cuando llega.
@@ -19,6 +20,14 @@ const promesaInvitado = initGuest();
 initRsvp(promesaInvitado);
 initBebidas(promesaInvitado);
 initSongs(promesaInvitado);
+
+// Invitados solo a la fiesta: ven ese evento y la cuenta regresiva va hasta su horario.
+promesaInvitado.then((invitado) => {
+  if (invitado?.tipo !== 'fiesta') return;
+  mostrarEventos('fiesta');
+  const [primero] = eventosDe('fiesta');
+  if (primero) cuenta.apuntarA(primero.inicio);
+});
 
 initRevelar();
 

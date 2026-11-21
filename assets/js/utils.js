@@ -46,3 +46,6 @@ export function hora(iso) {
 }
 
 export const nombresNovios = () => `${config.novios.nombre1} & ${config.novios.nombre2}`;
+
+// Eventos que ve cada tipo de invitado ('completa' o 'fiesta'). Sin tipo en config.js, el evento es de la invitación completa.
+export const eventosDe = (tipo = 'completa') => config.eventos.filter((e) => (e.tipo ?? 'completa') === tipo);

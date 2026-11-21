@@ -21,6 +21,8 @@ export function initRsvp(promesaInvitado) {
   const gracias = document.querySelector('[data-rsvp-gracias]');
   const idsAlimentacion = new Set(config.alimentacion.map((a) => a.id));
   let invitado = null;
+  // Los invitados solo a la fiesta no eligen menú (no están en la cena).
+  let conMenu = true;
 
   const pestanas = crearPestanas(form.querySelector('[data-rsvp-personas]'), {
     prefijo: 'rsvp',
@@ -34,7 +36,7 @@ export function initRsvp(promesaInvitado) {
         <p class="campo__error" id="rsvp-asiste-${p.uid}-error" data-error-de="asiste-${p.uid}" hidden></p>
       </fieldset>
       <div class="formulario__grupo" data-si hidden>
-        <fieldset class="campo" aria-describedby="rsvp-alimentacion-${p.uid}-ayuda">
+        ${conMenu ? `<fieldset class="campo" aria-describedby="rsvp-alimentacion-${p.uid}-ayuda">
           <legend class="campo__label">${segun(p, '¿Necesitás un menú especial?', (n) => `¿${n} necesita un menú especial?`)}</legend>
           <p class="campo__ayuda" id="rsvp-alimentacion-${p.uid}-ayuda">Marcalo solo si corresponde. Podés elegir más de una.</p>
           <div class="elecciones">
@@ -44,7 +46,7 @@ export function initRsvp(promesaInvitado) {
         <div class="campo">
           <label class="campo__label" for="rsvp-otra-${p.uid}">¿Alguna alergia u otra indicación? <span class="campo__opcional">(opcional)</span></label>
           <input class="campo__input" id="rsvp-otra-${p.uid}" name="otra-${p.uid}" type="text" maxlength="120">
-        </div>
+        </div>` : ''}
       </div>`,
     estaCompleta: (panel) => {
       const nombre = panel.querySelector('[data-persona-nombre]');
@@ -56,6 +58,7 @@ export function initRsvp(promesaInvitado) {
   promesaInvitado.then((datos) => {
     if (!datos) return;
     invitado = datos;
+    conMenu = datos.tipo !== 'fiesta';
     pestanas.establecer(personasDeInvitado(datos));
   });
 
@@ -75,7 +78,7 @@ export function initRsvp(promesaInvitado) {
         alimentacion: va
           ? [...p.panel.querySelectorAll(`[name="alimentacion-${p.uid}"]:checked`)].map((i) => i.value).filter((id) => idsAlimentacion.has(id))
           : [],
-        otra: va ? f[`otra-${p.uid}`].value.trim() : '',
+        otra: va ? (f[`otra-${p.uid}`]?.value.trim() ?? '') : '',
       };
     });
     return { personas, mensaje: f.mensaje.value.trim() };

@@ -1,12 +1,14 @@
 import { config } from './config.js';
 
-// Invitados ficticios para probar la personalización sin backend (?i=demo-k7p2q, ?i=demo-r5t8w, ?i=demo-x9wfa o ?i=demo-p3m8c).
+// Invitados ficticios para probar la personalización sin backend (?i=demo-k7p2q, ?i=demo-r5t8w, ?i=demo-x9wfa,
+// ?i=demo-p3m8c o ?i=demo-f4s7t, que es solo a la fiesta).
 // Solo se usan mientras appsScriptUrl esté vacía; la lista real vive en Google Sheets.
 const INVITADOS_DEMO = {
   'demo-k7p2q': { nombre: 'Familia Rodríguez', lugares: 4, integrantes: ['Martín Rodríguez', 'Laura Gómez', 'Sofi Rodríguez', 'Tomi Rodríguez'] },
   'demo-x9wfa': { nombre: 'Sofía', lugares: 1, integrantes: ['Sofía Pereira'] },
   'demo-r5t8w': { nombre: 'Familia Martínez', lugares: 3, integrantes: ['Diego Martínez', 'Carolina Suárez', 'Valentina Martínez'] },
   'demo-p3m8c': { nombre: 'Juan y acompañante', lugares: 2, integrantes: ['Juan Silva'] },
+  'demo-f4s7t': { nombre: 'Martín y Lucía', lugares: 2, integrantes: ['Martín Gómez', 'Lucía Ferrer'], tipo: 'fiesta' },
 };
 
 const esperar = (ms) => new Promise((resolver) => setTimeout(resolver, ms));

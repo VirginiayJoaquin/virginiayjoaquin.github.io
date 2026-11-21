@@ -129,7 +129,9 @@ No hay sección de redes ni hashtag, ni galería de fotos, ni datos útiles/tips
 ## Google Sheets (pestañas previstas)
 
 - `Invitados`: código, nombre a mostrar, integrantes (nombres separados por coma), lugares (opcional:
-  si supera a los integrantes, el resto son acompañantes sin nombre), notas, link.
+  si supera a los integrantes, el resto son acompañantes sin nombre), notas, link, tipo (vacío = invitación
+  completa; `fiesta` = solo a la fiesta: ve el evento `tipo: 'fiesta'` de config.js, la cuenta regresiva va
+  hasta ese horario y el RSVP no pide menú).
 - En el sitio, RSVP y bebidas se responden **por persona**, con una pestaña por integrante (`personas.js`).
 - `RSVP`: una fila por persona: fecha, código, invitación, nombre, asiste (sí/no), alimentación (ids de
   `config.alimentacion`), otra indicación, mensaje (solo en la primera fila).

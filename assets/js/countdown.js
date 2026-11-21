@@ -7,7 +7,7 @@ export function initCountdown() {
   const final = document.querySelector('[data-countdown-final]');
   const unidad = (nombre) => reloj.querySelector(`[data-unidad="${nombre}"]`);
   const elementos = { dias: unidad('dias'), horas: unidad('horas'), minutos: unidad('minutos'), segundos: unidad('segundos') };
-  const objetivo = new Date(config.fecha).getTime();
+  let objetivo = new Date(config.fecha).getTime();
   let intervalo;
 
   function actualizar() {
@@ -28,4 +28,12 @@ export function initCountdown() {
 
   actualizar();
   intervalo = setInterval(actualizar, 1000);
+
+  return {
+    // Para los invitados solo a la fiesta, la cuenta va hasta su horario.
+    apuntarA(fecha) {
+      objetivo = new Date(fecha).getTime();
+      actualizar();
+    },
+  };
 }

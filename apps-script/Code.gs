@@ -18,7 +18,7 @@ const ALIMENTACION_VALIDA = ['vegetariano', 'vegano', 'celiaco'];
 const LUGARES_SIN_CODIGO = 2;
 
 const HOJAS = {
-  invitados: { nombre: 'Invitados', columnas: ['Código', 'Nombre a mostrar', 'Integrantes', 'Lugares', 'Notas', 'Link'] },
+  invitados: { nombre: 'Invitados', columnas: ['Código', 'Nombre a mostrar', 'Integrantes', 'Lugares', 'Notas', 'Link', 'Tipo'] },
   rsvp: {
     nombre: 'RSVP',
     columnas: ['Fecha', 'Código', 'Invitación', 'Nombre', 'Asiste', 'Alimentación', 'Otra indicación', 'Mensaje'],
@@ -216,17 +216,19 @@ function guardarFila(definicion, esLaMisma, fila) {
 
 // Integrantes: nombres separados por coma. Lugares: opcional; si es mayor que la cantidad de
 // integrantes, los lugares que sobran son acompañantes que completan su nombre en el sitio.
+// Tipo: vacío = invitación completa; "fiesta" = solo a la fiesta (sin ceremonia ni menú).
 function buscarInvitado(codigo) {
   if (!codigo) return null;
   const hoja = obtenerHoja(HOJAS.invitados);
   if (hoja.getLastRow() < 2) return null;
 
-  const filas = hoja.getRange(2, 1, hoja.getLastRow() - 1, 4).getValues();
+  const filas = hoja.getRange(2, 1, hoja.getLastRow() - 1, HOJAS.invitados.columnas.length).getValues();
   const fila = filas.find((f) => normalizarCodigo(f[0]) === codigo && String(f[1]).trim());
   if (!fila) return null;
   const integrantes = String(fila[2]).split(/[,;\n]/).map((n) => n.trim()).filter(Boolean);
   const lugares = Math.max(1, parseInt(fila[3], 10) || 0, integrantes.length);
-  return { codigo, nombre: String(fila[1]).trim(), integrantes, lugares };
+  const tipo = String(fila[6]).trim().toLowerCase() === 'fiesta' ? 'fiesta' : 'completa';
+  return { codigo, nombre: String(fila[1]).trim(), integrantes, lugares, tipo };
 }
 
 function obtenerHoja(definicion) {

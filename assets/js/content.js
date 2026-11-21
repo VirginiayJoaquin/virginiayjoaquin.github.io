@@ -1,6 +1,6 @@
 import { config } from './config.js';
 import { urlGoogleCalendar, descargarIcs } from './calendar.js';
-import { esc, fechaLarga, fechaCorta, diaYMes, hora, nombresNovios } from './utils.js';
+import { esc, fechaLarga, fechaCorta, diaYMes, hora, nombresNovios, eventosDe } from './utils.js';
 
 // Textos sueltos: cualquier elemento con data-texto="clave" recibe el valor correspondiente.
 function renderTextos() {
@@ -22,9 +22,9 @@ function renderTextos() {
   document.title = `${nombresNovios()} · Nos casamos`;
 }
 
-function renderEventos() {
+function renderEventos(tipo) {
   const contenedor = document.querySelector('[data-eventos]');
-  contenedor.innerHTML = config.eventos
+  contenedor.innerHTML = eventosDe(tipo)
     .map(
       (evento) => `
       <article class="evento tarjeta revelar">
@@ -52,8 +52,20 @@ function renderEventos() {
       </article>`,
     )
     .join('');
+  return contenedor;
+}
 
-  contenedor.addEventListener('click', (evento) => {
+// Cuando llega un invitado de tipo 'fiesta' se reemplazan las tarjetas. La animación de aparición
+// no observa las nuevas, así que se muestran directo.
+export function mostrarEventos(tipo) {
+  renderEventos(tipo)
+    .querySelectorAll('.revelar')
+    .forEach((el) => el.classList.add('is-visible'));
+}
+
+function initEventos() {
+  renderEventos('completa');
+  document.querySelector('[data-eventos]').addEventListener('click', (evento) => {
     const boton = evento.target.closest('[data-ics]');
     if (boton) descargarIcs(config.eventos.find((e) => e.id === boton.dataset.ics));
   });
@@ -105,7 +117,7 @@ function renderDressCode() {
 
 export function renderContenido() {
   renderTextos();
-  renderEventos();
+  initEventos();
   initDesplegables();
   renderDressCode();
 }

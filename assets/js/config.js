@@ -34,16 +34,32 @@ export const config = {
     pie: 'Gracias por ser parte de nuestra historia',
   },
 
-  // Un solo evento: todos están invitados a la ceremonia y a la fiesta, en el mismo lugar.
+  // Cada invitado ve los eventos de su tipo (columna Tipo de la planilla): 'completa' (ceremonia, cena y fiesta)
+  // o 'fiesta' (solo la fiesta). La cuenta regresiva apunta al inicio del primer evento que ve.
   eventos: [
     {
       id: 'casamiento',
+      tipo: 'completa',
       titulo: 'Ceremonia & Fiesta',
       inicio: '2027-02-13T19:00:00-03:00',
       fin: '2027-02-14T05:00:00-03:00',
       lugar: 'AVA Experiencia Gourmet',
       direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
       descripcion: 'Te esperamos a las 19:00h. La ceremonia dará comienzo puntualmente a las 19:20h, al aire libre. Luego, continuaremos la fiesta en el salón.',
+      mapas: {
+        google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
+        waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
+      },
+    },
+    {
+      id: 'fiesta',
+      tipo: 'fiesta',
+      titulo: 'Fiesta',
+      inicio: '2027-02-13T21:30:00-03:00',
+      fin: '2027-02-14T05:00:00-03:00',
+      lugar: 'AVA Experiencia Gourmet',
+      direccion: 'Rbla. Pdte. Wilson 2180, 11300 Montevideo',
+      descripcion: 'Te esperamos entre las 21:30 y las 22:00 h para celebrar juntos en el salón.',
       mapas: {
         google: 'https://www.google.com/maps/search/?api=1&query=AVA+Experiencia+Gourmet+Rambla+Presidente+Wilson+2180+Montevideo',
         waze: 'https://waze.com/ul?q=Rambla%20Presidente%20Wilson%202180%20Montevideo&navigate=yes',
