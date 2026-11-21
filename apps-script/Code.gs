@@ -91,7 +91,7 @@ function doGet(e) {
   if (!invitado) return responder({ ok: false, error: 'Código no encontrado' });
   return responder({
     ok: true,
-    invitado: { nombre: invitado.nombre, lugares: invitado.lugares, integrantes: invitado.integrantes },
+    invitado: { nombre: invitado.nombre, lugares: invitado.lugares, integrantes: invitado.integrantes, tipo: invitado.tipo },
   });
 }
 
