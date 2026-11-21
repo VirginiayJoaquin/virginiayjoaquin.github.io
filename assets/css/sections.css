@@ -7,7 +7,8 @@
   place-items: center;
   padding: var(--esp-4);
   overflow-y: auto;
-  background: #f6f1e7; /* el mismo crema que el fondo de la imagen, para que no se note el borde */
+  /* Mismo tono que el papel de la imagen, para que la foto se funda con el fondo. */
+  background: #f4f3ef;
   color: var(--color-oliva-oscuro);
   text-align: center;
   transition: opacity 0.9s ease, visibility 0.9s;
@@ -32,6 +33,15 @@
   max-width: 100%;
   max-height: calc(100svh - 13rem);
   margin-bottom: var(--esp-2);
+  /* Bordes difuminados: la imagen se desvanece hacia el fondo en vez de cortar en seco. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, #000 10%, #000 88%, transparent),
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent, #000 10%, #000 88%, transparent),
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-composite: intersect;
 }
 
 .intro__pregunta {
