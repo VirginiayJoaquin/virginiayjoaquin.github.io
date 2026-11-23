@@ -38,6 +38,7 @@ function renderRegalos() {
       return `
       <article class="cuenta-bancaria tarjeta">
         <h3 class="cuenta-bancaria__titulo">${esc(c.banco)} · ${esc(c.moneda)}</h3>
+        ${c.nota ? `<p class="cuenta-bancaria__nota">${esc(c.nota)}</p>` : ''}
         <dl class="datos">
           <div class="datos__fila"><dt>Tipo</dt><dd>${esc(c.tipo)}</dd></div>
           <div class="datos__fila"><dt>Titular</dt><dd>${esc(c.titular)}</dd></div>

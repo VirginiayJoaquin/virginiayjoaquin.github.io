@@ -109,6 +109,7 @@ export const config = {
 
   regalos: {
     texto: 'Nuestro mejor regalo es compartir este día tan especial con vos. Pero si además querés hacernos un presente, te dejamos nuestros datos.',
+    // nota: opcional, se muestra debajo del título de la cuenta.
     cuentas: [
       {
         banco: 'Itaú',
@@ -116,6 +117,7 @@ export const config = {
         tipo: 'Caja de ahorro',
         titular: 'Virginia Cabral Liard',
         numero: '2615037',
+        nota: 'La cuenta acepta pesos, dólares, reales, irreales, lingotes, bitcoin, autos 0 km, etc.',
       },
     ],
   },
